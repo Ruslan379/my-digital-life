@@ -10,7 +10,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      My Digital Life
+      My Digital Life Project
     </div>
   );
 };
