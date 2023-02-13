@@ -12,14 +12,14 @@ export default function Home() {
         <div className={css.container}>
             <h1 className={css.title}>
                 <span className={css.spanName} role="img" aria-label="Greeting icon">
-                    💁 {isLoggedIn ? user.name : "Register or Log In"}
+                    💁 {isLoggedIn ? user.name : "Registration or Log In"}
                     {/* {isLoading ? [<Spinner size="18" />, " Editing..."] : "Edit"} */}
                     <br />
                 </span>
-                Welcome to Contacts BOOK
+                Welcome to Kapu$ta
                 <br />
                 <span className={css.spanWith}>
-                    &nbsp;(Designed with love for programming...)
+                    &nbsp;SMART FINANCE
                 </span>
             </h1>
         </div>

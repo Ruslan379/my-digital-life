@@ -9,10 +9,10 @@ export const AuthNav = () => {
     return (
         <div>
             <Link to="/register">
-                Register
+                REGISTRATION
             </Link>
             <Link to="/login">
-                Log In
+                LOG IN
             </Link>
         </div>
     );

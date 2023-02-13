@@ -15,7 +15,7 @@ export const Navigation = () => {
     return (
         <nav>
             <Link to="/" end>
-                Home
+                Kapu$ta
             </Link>
             {isLoggedIn && (
                 <>
