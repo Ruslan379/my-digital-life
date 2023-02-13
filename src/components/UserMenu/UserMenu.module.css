@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 3px;
 }
 
 .avatar {
@@ -15,6 +15,9 @@
 
 .userName {
     font-weight: 700;
+    font-size: 80%;
+    color: #0070a0;
+    margin-right: 40px;
 }
 
 .userEmail {
