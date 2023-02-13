@@ -42,9 +42,9 @@ export const LoginForm = () => {
                 <div className={css.container}>
                     <p className={css.title}>
                         <span className={css.spanName}>
-                            {user.name}
+                            {user.name},
                         </span>
-                        &nbsp;thank you for your registration. Please LOG IN
+                        &nbsp;&nbsp;thank you for your registration. Please LOG IN
                     </p>
                 </div>
             )}
