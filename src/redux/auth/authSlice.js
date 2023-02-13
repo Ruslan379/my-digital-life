@@ -15,6 +15,7 @@ const initialState = {
     user: { name: null, email: null, avatarURL: null, avatarURL2: null },
     token: null,
     isLoggedIn: false,
+    isRegistrIn: false, //? for Kapu$ta
     isRefreshing: false,
     error: null,
 };
@@ -30,13 +31,16 @@ const authSlice = createSlice({
             state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
             state.token = null;
             state.isLoggedIn = false;
+            state.isRegistrIn = false; //? for Kapu$ta
             state.isRefreshing = false;
             state.error = null;
         },
         [register.fulfilled](state, { payload }) {
             state.user = payload.user;
             state.token = payload.token;
-            state.isLoggedIn = true;
+            // state.isLoggedIn = true; //? for Kapu$ta
+            state.isLoggedIn = false;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.error = null;
         },
         [register.rejected](state, { payload }) {
@@ -44,6 +48,7 @@ const authSlice = createSlice({
             state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
             state.token = null;
             state.isLoggedIn = false;
+            state.isRegistrIn = false; //? for Kapu$ta
             state.isRefreshing = false;
             state.error = payload;
         },
@@ -54,6 +59,7 @@ const authSlice = createSlice({
             state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
             state.token = null;
             state.isLoggedIn = false;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.isRefreshing = false;
             state.error = null;
         },
@@ -62,6 +68,7 @@ const authSlice = createSlice({
             state.user = payload.user;
             state.token = payload.token;
             state.isLoggedIn = true;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.error = null;
         },
         [logIn.rejected](state, { payload }) {
@@ -70,12 +77,14 @@ const authSlice = createSlice({
             state.token = null;
             state.isLoggedIn = false;
             state.isRefreshing = false;
+            state.isRegistrIn = false; //? for Kapu$ta
             state.error = payload;
         },
 
         //! logOut
         [logOut.pending](state) {
             state.isLoggedIn = true;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.error = null;
         },
         [logOut.fulfilled](state) {
@@ -83,10 +92,12 @@ const authSlice = createSlice({
             state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
             state.token = null;
             state.isLoggedIn = false;
+            state.isRegistrIn = false; //? for Kapu$ta
             state.error = null;
         },
         [logOut.rejected](state, { payload }) {
             state.isLoggedIn = true;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.error = payload;
         },
 
@@ -98,6 +109,7 @@ const authSlice = createSlice({
         [refreshUser.fulfilled](state, { payload }) {
             state.user = payload;
             state.isLoggedIn = true;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.isRefreshing = false;
             state.error = null;
         },
@@ -121,6 +133,7 @@ const authSlice = createSlice({
             state.user.avatarURL = payload;
             // state.token = payload.token;
             state.isLoggedIn = true;
+            state.isRegistrIn = true; //? for Kapu$ta
             state.error = null;
         },
         [changeAvatar.rejected](state, { payload }) {

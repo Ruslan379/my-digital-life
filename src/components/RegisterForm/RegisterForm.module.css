@@ -7,3 +7,10 @@
     flex-direction: column;
     margin-bottom: 16px;
 }
+
+.title {
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    color: #ff7b00;
+}

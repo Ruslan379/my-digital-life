@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import { RestrictedRegistrRoute } from './RestrictedRegistrRoute'; //? for Kapu$ta
 import { refreshUser } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks';
 
@@ -38,11 +39,14 @@ export const App = () => {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
+                        {/* <Route path="/register" element={<RegisterPage />} /> */}
                         <Route
                             path="/register"
                             element={
-                                // <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />
-                                <RestrictedRoute redirectTo="/login" component={<RegisterPage />} />
+                                // <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} /> //! 1
+                                // <RestrictedRoute redirectTo="/" component={<RegisterPage />} /> //! 2
+                                <RestrictedRegistrRoute redirectTo="/login" component={<RegisterPage />} /> //! 3
+
                             }
                         />
                         <Route
