@@ -12,7 +12,7 @@ import {
 
 const initialState = {
     // user: { name: null, email: null },
-    user: { name: null, email: null, avatarURL: null, avatarURL2: null },
+    user: { name: null, email: null, avatarURL: null },
     token: null,
     isLoggedIn: false,
     isRegistrIn: false, //? for Kapu$ta
@@ -28,7 +28,7 @@ const authSlice = createSlice({
         //! register
         [register.pending](state, { payload }) {
             // state.user = { name: null, email: null };
-            state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            state.user = { name: null, email: null, avatarURL: null };
             state.token = null;
             state.isLoggedIn = false;
             state.isRegistrIn = false; //? for Kapu$ta
@@ -45,7 +45,7 @@ const authSlice = createSlice({
         },
         [register.rejected](state, { payload }) {
             // state.user = { name: null, email: null };
-            state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            state.user = { name: null, email: null, avatarURL: null };
             state.token = null;
             state.isLoggedIn = false;
             state.isRegistrIn = false; //? for Kapu$ta
@@ -56,7 +56,7 @@ const authSlice = createSlice({
         //! logIn
         [logIn.pending](state, { payload }) {
             // state.user = { name: null, email: null };
-            state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            state.user = { name: null, email: null, avatarURL: null };
             state.token = null;
             state.isLoggedIn = false;
             state.isRegistrIn = true; //? for Kapu$ta
@@ -73,7 +73,7 @@ const authSlice = createSlice({
         },
         [logIn.rejected](state, { payload }) {
             // state.user = { name: null, email: null };
-            state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            state.user = { name: null, email: null, avatarURL: null };
             state.token = null;
             state.isLoggedIn = false;
             state.isRefreshing = false;
@@ -89,7 +89,7 @@ const authSlice = createSlice({
         },
         [logOut.fulfilled](state) {
             // state.user = { name: null, email: null };
-            state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            state.user = { name: null, email: null, avatarURL: null };
             state.token = null;
             state.isLoggedIn = false;
             state.isRegistrIn = false; //? for Kapu$ta
@@ -121,7 +121,6 @@ const authSlice = createSlice({
 
         //! changeAvatar
         [changeAvatar.pending](state, { payload }) {
-            // state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
             state.user.avatarURL = null;
             // state.isLoggedIn = false;
             state.isRefreshing = false;
@@ -129,7 +128,6 @@ const authSlice = createSlice({
         },
         [changeAvatar.fulfilled](state, { payload }) {
             console.log("changeAvatar.fulfilled --> payload:", payload); //!
-            // state.user.avatarURL2 = payload;
             state.user.avatarURL = payload;
             // state.token = payload.token;
             state.isLoggedIn = true;
@@ -137,7 +135,7 @@ const authSlice = createSlice({
             state.error = null;
         },
         [changeAvatar.rejected](state, { payload }) {
-            // state.user = { name: null, email: null, avatarURL: null, avatarURL2: null };
+            // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;
             state.isRefreshing = false;

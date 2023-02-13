@@ -1,43 +1,35 @@
-// import axios from 'axios';
-// import { useState } from 'react';
-// import { useEffect } from 'react';
-
 // import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
 import { changeAvatar } from 'redux/auth/authOperations';
-// import { getUploadContacts } from 'redux/uploadContacts/uploadContactsSelectors';
-// import { selectLoading, selectAllContacts, getUploadContacts } from 'redux/contacts/contactsSelectors';
 
-// import { Container } from 'components/Container/Container';
-// import { Loader } from 'components/Loader/Loader';
-// import { UploadContactsList } from 'components/UploadContactsList/UploadContactsList';
 
 import css from './UploadAvatarPage.module.css';
 
-//!  +++++++++++++++++++ firebase ++++++++++++++++++++++++++++
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+//? НЕ НАДО для Kapu$ta:
+// //!  +++++++++++++++++++ firebase ++++++++++++++++++++++++++++
+// import { initializeApp } from "firebase/app";
+// import { getStorage } from "firebase/storage";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAJCkgGuoopUtogXXP5uwOnsJ29-UCECiY",
-  authDomain: "contacts-book-backend.firebaseapp.com",
-  projectId: "contacts-book-backend",
-  storageBucket: "contacts-book-backend.appspot.com",
-  messagingSenderId: "328355692785",
-  appId: "1:328355692785:web:a473dcce1b45a071456950"
-};
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAJCkgGuoopUtogXXP5uwOnsJ29-UCECiY",
+//   authDomain: "contacts-book-backend.firebaseapp.com",
+//   projectId: "contacts-book-backend",
+//   storageBucket: "contacts-book-backend.appspot.com",
+//   messagingSenderId: "328355692785",
+//   appId: "1:328355692785:web:a473dcce1b45a071456950"
+// };
 
-//! Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log("app:", app);//!
+// //! Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// console.log("app:", app);//!
 
-const storage = getStorage(app);
-//!  +++++++++++++++++++ firebase ++++++++++++++++++++++++++++
+// const storage = getStorage(app);
+// //!  +++++++++++++++++++ firebase ++++++++++++++++++++++++++++
 
 
 //----------------------------------------------------------------------
@@ -58,32 +50,33 @@ export default function UploadAvatarPage() {
     console.log("formData:", formData); //!
 
 
-    //!++++++++++++++++++++++++++++++++++++ Загрузка ссылки АВАТАРКИ на Firebase Storage без обработки++++++++++++++++++++++++++++++++++++++++++++++
-    //! Отправка АВАТАР на Storage
-    const avatarName = avatar.name;
+    //? НЕ НАДО для Kapu$ta:
+    // //!++++++++++++++++++++++++++++++++++++ Загрузка ссылки АВАТАРКИ на Firebase Storage без обработки++++++++++++++++++++++++++++++++++++++++++++++
+    // //! Отправка АВАТАР на Storage
+    // const avatarName = avatar.name;
 
-    async function uploadAvatarDownloadURLfirebaseStorage() {
-      const storageRef = ref(storage, `avatars/${avatarName}`);
-      console.log("storageRef:", storageRef); //!
+    // async function uploadAvatarDownloadURLfirebaseStorage() {
+    //   const storageRef = ref(storage, `avatars/${avatarName}`);
+    //   console.log("storageRef:", storageRef); //!
 
-      // const blob = new Blob([formData], { type: 'image/png' }); //! так НЕ работает
-      // const blob = new Blob(formData, { type: 'image/jpeg' }); //! так НЕ работает
-      // const blob = await formData.blob(); //! TypeError: formData.blob is not a function
-      const blob = new Blob([avatar], { type: 'image/png' });
-      console.log("blob:", blob); //!
+    //   // const blob = new Blob([formData], { type: 'image/png' }); //! так НЕ работает
+    //   // const blob = new Blob(formData, { type: 'image/jpeg' }); //! так НЕ работает
+    //   // const blob = await formData.blob(); //! TypeError: formData.blob is not a function
+    //   const blob = new Blob([avatar], { type: 'image/png' });
+    //   console.log("blob:", blob); //!
 
-      // const uploadBytesAvatar = await uploadBytes(storageRef, blob); //* так тоже работает
-      const uploadBytesAvatar = await uploadBytes(storageRef, avatar);
-      console.log("uploadBytesAvatar:", uploadBytesAvatar); //!
+    //   // const uploadBytesAvatar = await uploadBytes(storageRef, blob); //* так тоже работает
+    //   const uploadBytesAvatar = await uploadBytes(storageRef, avatar);
+    //   console.log("uploadBytesAvatar:", uploadBytesAvatar); //!
 
-      //! Получение АБСОЛЮТНОЙ ссылки на на АВАТАР
-      const avatarURL2 = await getDownloadURL(ref(storage, `avatars/${avatarName}`));
-      console.log("АСОЛЮТНЫЙ (ПОЛНЫЙ) путь к новому Jimp-файлу аватара в папке назначения -> avatarURL2:", avatarURL2); //!;
+    //   //! Получение АБСОЛЮТНОЙ ссылки на на АВАТАР
+    //   const avatarURL2 = await getDownloadURL(ref(storage, `avatars/${avatarName}`));
+    //   console.log("АСОЛЮТНЫЙ (ПОЛНЫЙ) путь к новому Jimp-файлу аватара в папке назначения -> avatarURL2:", avatarURL2); //!;
 
-      return avatarURL2;
-    };
-    uploadAvatarDownloadURLfirebaseStorage();
-    //!++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //   return avatarURL2;
+    // };
+    // uploadAvatarDownloadURLfirebaseStorage();
+    // //!++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
     dispatch(changeAvatar(formData));
