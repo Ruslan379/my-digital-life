@@ -127,17 +127,11 @@
 
 //! 2-й вариант
 
-//! GET @ /contacts
-
-//! POST @ /contacts
-
 //! Utility to add JWT
 
 //! Utility to remove JWT
 
 //! axios defaults baseURL
-
-//! axios defaults baseURL (возможно, это не надо, т.к. уже есть в authOperations.js)
 
 //! Загрузка ссылки с АВАТАРКИ MоngoDB c обработкой
 
