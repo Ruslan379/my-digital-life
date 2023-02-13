@@ -2,7 +2,7 @@ import { useAuth } from 'hooks';
 import { Navigate } from 'react-router-dom';
 
 /*
- * - If the route is restricted and the user is Registr In, render a <Navigate> to redirectTo
+ * - If the route is restricted and the user is Registr=In, render a <Navigate> to redirectTo
  * - Otherwise render the component
  * 
  * - Если маршрут ограниченный (Public), и юзер зарегистрирован, рендерит  <Navigate> to redirectTo

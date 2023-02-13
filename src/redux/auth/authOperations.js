@@ -35,11 +35,12 @@ export const register = createAsyncThunk(
         const { email } = credentials
         try {
             const res = await axios.post('/users/signup', credentials);
-            console.log("res.data.token:", res.data.token); //!
-            setAuthHeader(res.data.token);
+            // console.log("res.data.token:", res.data.token); //!
+            // setAuthHeader(res.data.token); //? НЕ НАДО для Kapu$ta:
             console.log("auth/signup --> res.data:", res.data); //!
-            console.log("auth/signup --> res.data.user:", res.data.user); //!
-            console.log("auth/signup --> res.data.user:", res.data.user.avatarURL); //!
+            console.log("auth/signup --> res.data.newUser:", res.data.newUser); //? НЕ НАДО для Kapu$ta:
+            // console.log("auth/signup --> res.data.user:", res.data.user); //? НЕ НАДО для Kapu$ta:
+            // console.log("auth/signup --> res.data.user:", res.data.user.avatarURL); //? НЕ НАДО для Kapu$ta:
             return res.data; //??
         } catch (error) {
             console.log(error); //!

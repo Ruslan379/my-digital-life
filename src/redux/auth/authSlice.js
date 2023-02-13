@@ -36,10 +36,11 @@ const authSlice = createSlice({
             state.error = null;
         },
         [register.fulfilled](state, { payload }) {
-            state.user = payload.user;
-            state.token = payload.token;
-            // state.isLoggedIn = true; //? for Kapu$ta
-            state.isLoggedIn = false;
+            state.user = payload.newUser;
+            // state.token = payload.token; //? НЕ НАДО для Kapu$ta:
+            state.token = null; //? for Kapu$ta
+            // state.isLoggedIn = true; //? НЕ НАДО для Kapu$ta:
+            state.isLoggedIn = false; //? for Kapu$ta
             state.isRegistrIn = true; //? for Kapu$ta
             state.error = null;
         },

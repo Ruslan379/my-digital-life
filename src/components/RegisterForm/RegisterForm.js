@@ -46,7 +46,10 @@ export const RegisterForm = () => {
             {IsRegistrIn && (
                 <div className={css.container}>
                     <p className={css.title}>
-                        {user.name} thank you for your registration. Please LOG IN
+                        <span className={css.spanName}>
+                            {user.name}
+                        </span>
+                        &nbsp;thank you for your registration. Please LOG IN
                     </p>
                 </div>
             )}
