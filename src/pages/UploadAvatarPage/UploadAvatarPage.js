@@ -99,7 +99,12 @@ export default function UploadAvatarPage() {
 
 
   return (
-    <>
+    <div className={css.Сontainer}>
+
+      <div className={css.UserProfileTitle}>User profile</div>
+
+      <p className={css.Title}>Change avatar</p>
+
       <form
         // id="form"
         // className={css.Form}
@@ -131,7 +136,7 @@ export default function UploadAvatarPage() {
       </form>
 
       {/* <ToastContainer autoClose={1500} theme={"colored"} /> */}
-    </>
+    </div>
   );
 }
 

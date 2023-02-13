@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 import { useAuth } from 'hooks';
 import { register } from 'redux/auth/authOperations';

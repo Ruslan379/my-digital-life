@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { logOut } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks';
@@ -20,10 +21,11 @@ export const UserMenu = () => {
                 src={defaultAvatar}
                 alt="" width="32"
             />
-            <span className={css.userName}
-            >
-                {user.name}
-            </span>
+            <NavLink className={css.userNameLink} to="/avatar">
+                <span className={css.userName}>{user.name}</span>
+            </NavLink>
+            {/* <span className={css.userName}>{user.name}</span> */}
+
             <button className={css.btnLogout}
                 type="button"
                 onClick={() => dispatch(logOut())}

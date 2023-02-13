@@ -27,9 +27,9 @@ export const Navigation = () => {
                         Upload Contacts
                     </Link>
 
-                    <Link to="/avatar">
+                    {/* <Link to="/avatar">
                         Change Avatar
-                    </Link>
+                    </Link> */}
                 </>
             )}
         </nav>
