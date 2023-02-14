@@ -6,7 +6,7 @@ import { selectLoading } from 'redux/contacts/contactsSelectors';
 
 import { getFilter } from 'redux/filter/filterSelectors';
 
-// import { getBalance } from 'redux/auth/authOperations.js';
+import { getBalance } from 'redux/auth/authOperations';
 // import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 import { useAuth } from 'hooks';
 import { selectAllContacts } from 'redux/contacts/contactsSelectors';
@@ -33,7 +33,9 @@ export default function ExpensesPage() {
   console.log("ExpensesPage ==> contacts:", contacts); //!
 
 
-  const { isRefreshing, balance } = useAuth();
+  const { isRefreshing, user } = useAuth();
+  const { balance } = user;
+  console.log("BalanceForm ==> balance:", balance); //!
   // const balance = useSelector(selectBalance);
   console.log("ExpensesPage ==> balance:", balance); //!
 
@@ -43,7 +45,7 @@ export default function ExpensesPage() {
 
   useEffect(() => {
     dispatch(fetchContacts());
-    // dispatch(getBalance());
+    dispatch(getBalance());
   }, [dispatch]);
 
 

@@ -15,7 +15,7 @@ import {
 const initialState = {
     // user: { name: null, email: null },
     user: { name: null, email: null, avatarURL: null },
-    balance: null,
+    balance: 0,
     token: null,
     isLoggedIn: false,
     isRegistrIn: false, //? for Kapu$ta
@@ -127,7 +127,7 @@ const authSlice = createSlice({
 
         //! changeAvatar
         [changeAvatar.pending](state, { payload }) {
-            state.user.avatarURL = null;
+            // state.user.avatarURL = null;
             // state.isLoggedIn = false;
             state.isRefreshing = true;
             state.error = null;
@@ -146,36 +146,37 @@ const authSlice = createSlice({
             // state.token = null;
             // state.isLoggedIn = false;
             state.isRefreshing = false;
-            // state.error = payload;
+            state.error = payload;
         },
 
         //! ПОЛУЧИТЬ баланс пользователя
         [getBalance.pending](state, { payload }) {
             // state.user.avatarURL = null;
             // state.isLoggedIn = false;
-            state.isRefreshing = true;
+            // state.isRefreshing = true;
             state.error = null;
         },
         [getBalance.fulfilled](state, { payload }) {
             console.log("getBalance.fulfilled --> payload:", payload); //!
             state.balance = payload;
-            state.isRefreshing = false;
+            // state.user.balance = payload;
             // state.isLoggedIn = true;
             // state.isRegistrIn = true; //? for Kapu$ta
+            // state.isRefreshing = false;
             state.error = null;
         },
         [getBalance.rejected](state, { payload }) {
             // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;
-            state.isRefreshing = false;
+            // state.isRefreshing = false;
             state.error = payload;
         },
         //! ИЗМЕНИТЬ баланс пользователя
         [changeBalance.pending](state, { payload }) {
             // state.user.avatarURL = null;
             // state.isLoggedIn = false;
-            state.isRefreshing = true;
+            // state.isRefreshing = true;
             state.error = null;
         },
         [changeBalance.fulfilled](state, { payload }) {
