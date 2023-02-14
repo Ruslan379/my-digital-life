@@ -6,7 +6,7 @@ import { selectLoading } from 'redux/contacts/contactsSelectors';
 
 import { getFilter } from 'redux/filter/filterSelectors';
 
-import { getBalance } from 'redux/auth/authOperations.js';
+// import { getBalance } from 'redux/auth/authOperations.js';
 // import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 import { useAuth } from 'hooks';
 import { selectAllContacts } from 'redux/contacts/contactsSelectors';
