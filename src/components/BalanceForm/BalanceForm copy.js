@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 
-// import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
+// import { getBalance, changeBalance } from 'redux/auth/authOperations.js';
 import { updateBalance } from 'redux/auth/authOperations.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,7 +46,6 @@ export const BalanceForm = () => {
 
         dispatch(updateBalance({ balance }));
         toast.success(`Your balance of ${balance} UAN has been successfully added`);
-        // dispatch(getBalance());
         form.reset();
         return;
     };
@@ -71,12 +70,13 @@ export const BalanceForm = () => {
                         // id="inputName"
                         type="text"
                         name="balance"
-                        // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
-                        // title="Вalance must be whole numbers (or decimal numbers)"
+                        pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
+                        title="Вalance must be whole numbers (or decimal numbers)"
                         // required
-                        // value={balance1}
-                        // readonly
-                        defaultValue={balance1}
+                        value={balance1}
+                        readonly
+
+                    // defaultValue={balanceAuth}
                     // defaultValue={(balance1) ? balance1 : balanceAuth}
                     // onChange={handleSubmit}
                     />
@@ -93,6 +93,7 @@ export const BalanceForm = () => {
                     {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
                 </button>
             </form>
+
 
             <ToastContainer autoClose={1500} theme={"colored"} />
         </>
