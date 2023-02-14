@@ -176,7 +176,7 @@ const authSlice = createSlice({
         [changeBalance.pending](state, { payload }) {
             // state.user.avatarURL = null;
             // state.isLoggedIn = false;
-            // state.isRefreshing = true;
+            state.isRefreshing = true;
             state.error = null;
         },
         [changeBalance.fulfilled](state, { payload }) {
