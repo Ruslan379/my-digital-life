@@ -19,6 +19,15 @@ export const Navigation = () => {
             </Link>
             {isLoggedIn && (
                 <>
+                    {/* //! Маршруты EXPENSES и INCOME */}
+                    <Link to="/expenses">
+                        EXPENSES
+                    </Link>
+
+                    <Link to="/income">
+                        INCOME
+                    </Link>
+                    {/* //! Маршруты contacts */}
                     <Link to="/contacts">
                         Contacts
                     </Link>
@@ -26,10 +35,10 @@ export const Navigation = () => {
                     <Link to="/upload">
                         Upload Contacts
                     </Link>
-
-                    {/* <Link to="/avatar">
+                    {/* //! Маршрут АВТАР */}
+                    <Link to="/avatar">
                         Change Avatar
-                    </Link> */}
+                    </Link>
                 </>
             )}
         </nav>

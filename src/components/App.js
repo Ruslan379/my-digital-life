@@ -12,12 +12,20 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks';
 
-const HomePage = lazy(() => import('../pages/Home/Home'));
-const RegisterPage = lazy(() => import('../pages/Register'));
-const LoginPage = lazy(() => import('../pages/Login'));
-const ContactsPage = lazy(() => import('../pages/Contacts'));
-const UploadContactsPage = lazy(() => import('../pages/UploadContacts/UploadContacts'));
-const UploadAvatarPage = lazy(() => import('../pages/UploadAvatarPage/UploadAvatarPage'));
+//! Страницы маршрутов:
+const HomePage = lazy(() => import('../pages/Home/Home.js'));
+//! Маршруты REGISTRATION и LOG IN
+const RegisterPage = lazy(() => import('../pages/Register.js'));
+const LoginPage = lazy(() => import('../pages/Login.js'));
+//! Маршруты EXPENSES и INCOME
+const ExpensesPage = lazy(() => import('../pages/ExpensesPage/ExpensesPage.js'));
+const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage.js'));
+
+//! Маршруты contacts
+const ContactsPage = lazy(() => import('../pages/Contacts.js'));
+const UploadContactsPage = lazy(() => import('../pages/UploadContacts/UploadContacts.js'));
+//! Маршрут АВТАР
+const UploadAvatarPage = lazy(() => import('../pages/UploadAvatarPage/UploadAvatarPage.js'));
 
 
 
@@ -40,6 +48,7 @@ export const App = () => {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
                         {/* <Route path="/register" element={<RegisterPage />} /> */}
+                        {/* //! Маршруты REGISTRATION и LOG IN */}
                         <Route
                             path="/register"
                             element={
@@ -53,9 +62,23 @@ export const App = () => {
                         <Route
                             path="/login"
                             element={
-                                <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+                                <RestrictedRoute redirectTo="/expenses" component={<LoginPage />} />
                             }
                         />
+                        {/* //! Маршруты EXPENSES и INCOME */}
+                        <Route
+                            path="/expenses"
+                            element={
+                                <PrivateRoute redirectTo="/login" component={<ExpensesPage />} />
+                            }
+                        />
+                        <Route
+                            path="/income"
+                            element={
+                                <PrivateRoute redirectTo="/login" component={<IncomePage />} />
+                            }
+                        />
+                        {/* //! Маршруты contacts */}
                         <Route
                             path="/contacts"
                             element={
@@ -68,6 +91,7 @@ export const App = () => {
                                 <PrivateRoute redirectTo="/login" component={<UploadContactsPage />} />
                             }
                         />
+                        {/* //! Маршрут АВТАР */}
                         <Route
                             path="/avatar"
                             element={
