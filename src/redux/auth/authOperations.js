@@ -211,6 +211,44 @@ export const changeAvatar = createAsyncThunk(
 );
 
 
+//! ПОЛУЧИТЬ баланс пользователя
+export const getBalance = createAsyncThunk(
+    'auth/getBalance',
+    async (_, thunkAPI) => {
+        try {
+
+            const { data } = await axios.get('/users/balance');
+            // const { contacts } = data; //??  //???
+            console.log("auth/getBalance == >data.balance:", data.balance); //!
+            return data.balance;
+        } catch (error) {
+            console.log(error); //!
+            toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+//! ИЗМЕНИТЬ баланс пользователя
+export const changeBalance = createAsyncThunk(
+    'auth/changeBalance',
+    async (_, thunkAPI) => {
+        try {
+            // const { data } = await axios.get('/contacts'); //?  //?? 
+            // console.log("contacts/fetchAll==>data:", data); //! //??
+            const { data: { contacts } } = await axios.patch('/users/balance'); //???
+            // const { contacts } = data; //??  //???
+            console.log("contacts/fetchAll == >data.contacts:", contacts); //!
+            // return data; //?
+            // return data.contacts; //??
+            return contacts; //??  //???
+        } catch (error) {
+            console.log(error); //!
+            toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
 
 //? +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   //! --------------Добавленные users -------------------

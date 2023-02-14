@@ -38,6 +38,7 @@ export const App = () => {
         dispatch(refreshUser());
     }, [dispatch]);
 
+    console.log("App ==> isRefreshing:", isRefreshing); //!
 
     return (
         <>

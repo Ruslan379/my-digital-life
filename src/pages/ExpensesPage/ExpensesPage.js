@@ -1,110 +1,91 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsOperations';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
+import { selectLoading } from 'redux/contacts/contactsSelectors';
+
+import { getFilter } from 'redux/filter/filterSelectors';
+
+import { getBalance } from 'redux/auth/authOperations.js';
+// import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
+import { useAuth } from 'hooks';
+import { selectAllContacts } from 'redux/contacts/contactsSelectors';
 
 import { Container } from 'components/Container/Container';
-import { selectAllContacts, selectLoading } from 'redux/contacts/contactsSelectors';
-import { Spinner } from 'components/Spinner/Spinner';
+import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
+import { Loader } from 'components/Loader/Loader';
+import { Filter } from 'components/Filter/Filter';
+import { ContactList } from 'components/ContactList/ContactList';
+import { DeleteAllContacts } from 'components/DeleteAllContacts/DeleteAllContacts';
 
-import css from './ExpensesPage.module.css';
 
 
 export default function ExpensesPage() {
-  // export const ExpensesPage = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectAllContacts);
-  // console.log("Contacts==>contacts:", contacts); //!
-
   const isLoading = useSelector(selectLoading);
-  // console.log("ContactListItem==>isLoading:", isLoading); //!
+  // console.log("ExpensesPage ==> isLoading:", isLoading); //!
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const filter = useSelector(getFilter);
+  // console.log("ExpensesPage ==> filter:", filter); //!
 
-    const form = e.currentTarget;
-    const name = form.elements.name.value;
-    // const number = form.elements.number.value; //??
-    const phone = form.elements.phone.value;
+  const contacts = useSelector(selectAllContacts);
+  console.log("ExpensesPage ==> contacts:", contacts); //!
 
-    if (
-      contacts.find(item => item.name.toLowerCase() === name.toLowerCase())
-    ) {
-      // alert(`${name} уже есть в контактах.`);
-      toast.warning(`${name} уже есть в контактах.`);
-      form.reset();
-      return;
-    }
 
-    dispatch(addContact({ name, phone }));
-    form.reset();
-    return;
+  const { isRefreshing, balance } = useAuth();
+  // const balance = useSelector(selectBalance);
+  console.log("ExpensesPage ==> balance:", balance); //!
+
+  // const isRefreshing = useSelector(selectIsRefreshing);
+  console.log("ExpensesPage ==> isRefreshing:", isRefreshing); //!
+
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+    // dispatch(getBalance());
+  }, [dispatch]);
+
+
+
+  //! Создание нового массива объектов из contacts с учетом значения поиска из filter
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      (contact.name.toLowerCase()).includes(normalizedFilter),
+    );
   };
+
+  const visibleContacts = getVisibleContacts();
+  const totalContacts = contacts.length;
 
 
 
   return (
     <Container>
-      <form
-        className={css.Form}
-        onSubmit={handleSubmit}
-      >
+      <BalanceForm />
 
-        <label
-          className={css.FormLabel}
-        >
-          {/* Name */}
-          {isLoading ? "Please wait..." : "Name"}
-          <br />
-          <input
-            className={css.FormInput}
-            id="inputName"
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          // value={nameValue}
-          // onChange={handleChange}
+      <h2>Contacts</h2>
+      <p>Total: {totalContacts}</p>
+
+      {isLoading && <Loader />}
+
+      {contacts.length > 0 && (
+        <>
+          <Filter />
+
+          <ContactList
+            visibleContacts={visibleContacts}
           />
-        </label>
-        <br />
 
-        <label className={css.FormLabel}>
-          {/* Phone */}
-          {isLoading ? "..." : "Phone"}
-          <br />
-          <input
-            className={css.FormInput}
-            type="tel"
-            name="phone"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          // value={phoneValue}
-          // onChange={handleChange}
-          />
-        </label>
-        <br />
+          {/* <DeleteAllContacts /> */}
+        </>
+      )}
 
-        <button
-          className={css.FormBtn}
-          type="submit"
-          disabled={isLoading}
-        >
-          {/* Add contact */}
-          {isLoading ? <Spinner size="32">Add contact</Spinner> : "Add contact"}
-        </button>
-      </form>
+      {contacts.length > 0 && !isLoading && <DeleteAllContacts />}
 
-      <ToastContainer autoClose={1500} theme={"colored"} />
     </Container>
   );
 }
 
-
-
-
-
+// {contacts.length > 0 && !isLoading && (
