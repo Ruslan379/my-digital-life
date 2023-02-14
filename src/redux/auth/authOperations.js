@@ -216,9 +216,7 @@ export const getBalance = createAsyncThunk(
     'auth/getBalance',
     async (_, thunkAPI) => {
         try {
-
             const { data } = await axios.get('/users/balance');
-            // const { contacts } = data; //??  //???
             console.log("auth/getBalance == >data.balance:", data.balance); //!
             return data.balance;
         } catch (error) {
@@ -231,18 +229,15 @@ export const getBalance = createAsyncThunk(
 
 
 //! ИЗМЕНИТЬ баланс пользователя
-export const changeBalance = createAsyncThunk(
+export const updateBalance = createAsyncThunk(
     'auth/changeBalance',
-    async (_, thunkAPI) => {
+    async (credentials, thunkAPI) => {
+        console.log("auth/changeBalance --> credentials:", credentials); //!
         try {
-            // const { data } = await axios.get('/contacts'); //?  //?? 
-            // console.log("contacts/fetchAll==>data:", data); //! //??
-            const { data: { contacts } } = await axios.patch('/users/balance'); //???
-            // const { contacts } = data; //??  //???
-            console.log("contacts/fetchAll == >data.contacts:", contacts); //!
-            // return data; //?
-            // return data.contacts; //??
-            return contacts; //??  //???
+            const { data } = await axios.patch('/users/balance', credentials);
+            console.log("auth/changeBalance == >data.balance:", data.balance); //!
+            return data.balance;
+
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });

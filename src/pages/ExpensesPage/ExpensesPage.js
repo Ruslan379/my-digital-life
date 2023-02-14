@@ -76,8 +76,10 @@ export default function ExpensesPage() {
     <Container>
       <BalanceForm />
 
-      <h2>Contacts</h2>
-      {/* <p>Total: {totalContacts}</p> */}
+      <h2>Balance: {balance}</h2>
+
+      {/* <h2>Contacts</h2>
+      <p>Total: {totalContacts}</p> */}
 
       {/* {isLoading && <Loader />} */}
 

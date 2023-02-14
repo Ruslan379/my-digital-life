@@ -6,7 +6,7 @@ import {
     refreshUser,
     changeAvatar,
     getBalance,
-    changeBalance
+    updateBalance
 } from './authOperations';
 
 
@@ -151,9 +151,7 @@ const authSlice = createSlice({
 
         //! ПОЛУЧИТЬ баланс пользователя
         [getBalance.pending](state, { payload }) {
-            // state.user.avatarURL = null;
-            // state.isLoggedIn = false;
-            // state.isRefreshing = true;
+            // state.isRefreshing = true; //! Зацикливается
             state.error = null;
         },
         [getBalance.fulfilled](state, { payload }) {
@@ -162,32 +160,31 @@ const authSlice = createSlice({
             // state.user.balance = payload;
             // state.isLoggedIn = true;
             // state.isRegistrIn = true; //? for Kapu$ta
-            // state.isRefreshing = false;
+            state.isRefreshing = false;
             state.error = null;
         },
         [getBalance.rejected](state, { payload }) {
             // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;
-            // state.isRefreshing = false;
+            state.isRefreshing = false;
             state.error = payload;
         },
+
         //! ИЗМЕНИТЬ баланс пользователя
-        [changeBalance.pending](state, { payload }) {
-            // state.user.avatarURL = null;
-            // state.isLoggedIn = false;
+        [updateBalance.pending](state, { payload }) {
             state.isRefreshing = true;
             state.error = null;
         },
-        [changeBalance.fulfilled](state, { payload }) {
-            console.log("changeBalance.fulfilled --> payload:", payload); //!
+        [updateBalance.fulfilled](state, { payload }) {
+            console.log("updateBalance.fulfilled --> payload:", payload); //!
             state.balance = payload;
-            state.isRefreshing = false;
             // state.isLoggedIn = true;
             // state.isRegistrIn = true; //? for Kapu$ta
+            state.isRefreshing = false;
             state.error = null;
         },
-        [changeBalance.rejected](state, { payload }) {
+        [updateBalance.rejected](state, { payload }) {
             // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;

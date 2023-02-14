@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 // import { getBalance, changeBalance } from 'redux/auth/authOperations.js';
-import { changeBalance } from 'redux/auth/authOperations.js';
+import { updateBalance } from 'redux/auth/authOperations.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
-// import { useAuth } from 'hooks';
+import { useAuth } from 'hooks';
 
 // import { Spinner } from 'components/Spinner/Spinner';
 
@@ -24,11 +24,11 @@ export const BalanceForm = () => {
     //     dispatch(getBalance());
     // }, [dispatch]);
 
-    // const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
-    // const balanceUser = user.balance;
-    // console.log("BalanceForm ==> balanceUser:", balanceUser); //!
-    // console.log("BalanceForm ==> balanceAuth:", balanceAuth); //!
-    // console.log("BalanceForm ==> isRefreshingAuth:", isRefreshingAuth); //!
+    const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
+    const balanceUser = user.balance; //! тормозит
+    console.log("BalanceForm ==> balanceUser:", balanceUser); //!
+    console.log("BalanceForm ==> balanceAuth:", balanceAuth); //!
+    console.log("BalanceForm ==> isRefreshingAuth:", isRefreshingAuth); //!
 
     const balance1 = useSelector(selectBalance);
     console.log("BalanceForm ==> balance:", balance1); //!
@@ -44,7 +44,7 @@ export const BalanceForm = () => {
         const form = e.currentTarget;
         const balance = form.elements.balance.value;
 
-        dispatch(changeBalance({ balance }));
+        dispatch(updateBalance({ balance }));
         toast.success(`Your balance of ${balance} UAN has been successfully added`);
         form.reset();
         return;
