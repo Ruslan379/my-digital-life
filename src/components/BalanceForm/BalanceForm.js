@@ -7,9 +7,10 @@ import { changeBalance } from 'redux/auth/authOperations.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
-import { selectIsRefreshing } from 'redux/auth/authSelectors';
-import { useAuth } from 'hooks';
+import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
+// import { selectIsRefreshing } from 'redux/auth/authSelectors';
+// import { useAuth } from 'hooks';
+
 // import { Spinner } from 'components/Spinner/Spinner';
 
 import css from './BalanceForm.module.css';
@@ -23,10 +24,14 @@ export const BalanceForm = () => {
     //     dispatch(getBalance());
     // }, [dispatch]);
 
-    // const balance = useSelector(selectBalance);
-    const { user } = useAuth();
-    const { balance } = user;
-    console.log("BalanceForm ==> balance:", balance); //!
+    // const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
+    // const balanceUser = user.balance;
+    // console.log("BalanceForm ==> balanceUser:", balanceUser); //!
+    // console.log("BalanceForm ==> balanceAuth:", balanceAuth); //!
+    // console.log("BalanceForm ==> isRefreshingAuth:", isRefreshingAuth); //!
+
+    const balance1 = useSelector(selectBalance);
+    console.log("BalanceForm ==> balance:", balance1); //!
 
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("BalanceForm ==> isRefreshing:", isRefreshing); //!
@@ -69,7 +74,7 @@ export const BalanceForm = () => {
                         title="Вalance must be whole numbers (or decimal numbers)"
                         required
                         // value={balance}
-                        defaultValue={balance}
+                        defaultValue={balance1}
                     // onChange={handleChange}
                     />
                 </label>
