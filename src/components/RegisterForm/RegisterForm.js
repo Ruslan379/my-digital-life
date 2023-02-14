@@ -74,21 +74,21 @@ export const RegisterForm = () => {
                 </button> */}
             </form>
 
-            {/* //! 1 - вариант */}
+            {/* //! 1 - вариант: Приглашение ЗАЛОГИНИТЬСЯ */}
             {IsRegistrIn && (
                 <div className={css.container}>
                     <p className={css.title}>
                         <span className={css.spanName}>
                             {user.name},
                         </span>
-                        &nbsp;&nbsp;thank you for your registration. Please                       <span className={css.spanLink}>
+                        &nbsp;&nbsp;thank you for your registration. Please
+                        <span className={css.spanLink}>
                             <NavLink className={css.spanlink} to="/login">LOG IN</NavLink>
                         </span>
                     </p>
                 </div>
             )}
-
-            {/* //! 2 - вариант */}
+            {/* //! 2 - вариант: Приглашение ЗАЛОГИНИТЬСЯ */}
             {/* <div className={css.container}>
                 <p className={css.title}>
                     {IsRegistrIn ? `${user.name} thank you for your registration. Please LOG IN` : ""}
