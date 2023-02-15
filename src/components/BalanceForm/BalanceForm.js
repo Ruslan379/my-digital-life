@@ -45,7 +45,7 @@ export const BalanceForm = () => {
         const balance = form.elements.balance.value;
 
         dispatch(updateBalance({ balance }));
-        toast.success(`Your balance of ${balance} UAN has been successfully added`);
+        toast.success(`Your balance has been successfully updated to ${balance} UAN`);
         // dispatch(getBalance());
         form.reset();
         return;
@@ -71,8 +71,8 @@ export const BalanceForm = () => {
                         // id="inputName"
                         type="text"
                         name="balance"
-                        // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
-                        // title="Вalance must be whole numbers (or decimal numbers)"
+                        pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
+                        title="Вalance must be whole numbers (or decimal numbers)"
                         // required
                         // value={balance1}
                         // readonly

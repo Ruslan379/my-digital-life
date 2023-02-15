@@ -10,6 +10,7 @@ import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 
 import { Container } from 'components/Container/Container';
 import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
+import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
 
 
 //-----------------------------------------------------------------------------------
@@ -30,10 +31,13 @@ export default function ExpensesPage() {
 
   return (
     <Container>
-
-      <BalanceForm />
-
       <h2>Balance: {balance}</h2>
+      <BalanceForm />
+      <br />
+      <br />
+
+      <h2>Expenses Transactions</h2>
+      <TransactionForm />
 
     </Container>
   );
