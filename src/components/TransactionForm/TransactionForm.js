@@ -1,9 +1,10 @@
 // import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 // import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
-import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
+// import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,7 +19,7 @@ import css from './TransactionForm.module.css';
 
 
 export const TransactionForm = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // useEffect(() => {
     //     dispatch(getBalance());
@@ -42,7 +43,7 @@ export const TransactionForm = () => {
         e.preventDefault();
 
         const form = e.currentTarget;
-        const balance = form.elements.balance.value;
+        // const balance = form.elements.balance.value;
 
         // dispatch(addExpensesTransaction({ expensesTransaction })); //!!!!!
         toast.success(`Your Expenses transaction has been successfully added`);
@@ -104,8 +105,9 @@ export const TransactionForm = () => {
                 </label>
 
                 <label className={css.FormLabel}
-                    for="productCategory">
-                    {/* Choose a car: */}
+                // for="productCategory"
+                >
+                    {/* Choose a Product category: */}
                 </label>
                 <p className={css.selectText}>
                     <select className={css.selectInput}
@@ -113,7 +115,7 @@ export const TransactionForm = () => {
                         // value={"Product category"}
                         defaultValue={"Product category"}
                         name="category"
-                        placeholder="Product category"
+                        // placeholder="Product category"
                         form="transactionForm"
                         required
                     >
@@ -161,15 +163,13 @@ export const TransactionForm = () => {
                     INPUT
                     {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
                 </button>
-
-                <button className={css.FormBtn}
-                    type="button"
-                // disabled={isRefreshing}
-                >
-                    CLEAR
-                    {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
-                </button>
-                <p><input type="submit" value="CLEAR" /></p>
+                {/* //! Кнопка очистки формы - 2 */}
+                <input className={css.FormBtn}
+                    type="reset"
+                    value="CLEAR"
+                    form="transactionForm"
+                // onChange={handleClearSubmit}
+                />
             </form>
 
             <ToastContainer autoClose={1500} theme={"colored"} />
