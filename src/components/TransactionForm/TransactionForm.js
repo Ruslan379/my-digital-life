@@ -43,11 +43,31 @@ export const TransactionForm = () => {
         e.preventDefault();
 
         const form = e.currentTarget;
-        // const balance = form.elements.balance.value;
+        const currentDate = form.elements.currentDate.value;
+        const description = form.elements.description.value;
+        const category = form.elements.category.value;
+        const sum = form.elements.sum.value;
+
+        if (category === "true") {
+            toast.warning(`Please choose a product category`);
+            return;
+        }
+        if (!sum) {
+            toast.warning(`Please enter the transaction amount`);
+            return;
+        }
+
+        const expensesTransaction = {
+            currentDate,
+            description,
+            category,
+            sum
+        };
+
+        console.log("expensesTransaction", expensesTransaction);
 
         // dispatch(addExpensesTransaction({ expensesTransaction })); //!!!!!
         toast.success(`Your Expenses transaction has been successfully added`);
-        // dispatch(getBalance());
         form.reset();
         return;
     };
@@ -70,7 +90,7 @@ export const TransactionForm = () => {
                         className={css.FormInput}
                         // id="inputName"
                         type="text"
-                        name="date"
+                        name="currentDate"
                         placeholder="Date"
                     // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
                     // title="Вalance must be whole numbers (or decimal numbers)"
@@ -109,24 +129,32 @@ export const TransactionForm = () => {
                 >
                     {/* Choose a Product category: */}
                 </label>
-                <p className={css.selectText}>
-                    <select className={css.selectInput}
-                        id="productCategory"
-                        // value={"Product category"}
-                        defaultValue={"Product category"}
-                        name="category"
-                        // placeholder="Product category"
-                        form="transactionForm"
-                        required
-                    >
-                        {/* <option value="Product category" disabled>******</option> */}
-                        <option disabled>Product category</option>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </p>
+                {/* <p className={css.selectText}> */}
+                <select className={css.selectText}
+                    id="productCategory"
+                    // value={"Product category"}
+                    // defaultValue={"Product category"}
+                    name="category"
+                    // placeholder="Product category"
+                    form="transactionForm"
+                // required
+                >
+                    {/* <option value="Product category" disabled>******</option> */}
+                    {/* <option className={css.selectPlaceholder} disabled>Product category</option> */}
+                    <option className={css.selectPlaceholder} value disabled selected>Product category</option>
+                    <option value="transport">Transport</option>
+                    <option value="products">Products</option>
+                    <option value="health">Health</option>
+                    <option value="alcohol">Alcohol</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="housing">Housing</option>
+                    <option value="technique">Technique</option>
+                    <option value="communal">Communal, communication</option>
+                    <option value="sports">Sports, hobbies</option>
+                    <option value="education">Education</option>
+                    <option value="other">Other</option>
+                </select>
+                {/* </p> */}
 
 
                 {/* <br /> */}
