@@ -2,6 +2,8 @@
 // import { useDispatch, useSelector } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+import moment from 'moment';
+
 
 // import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
 // import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
@@ -17,7 +19,7 @@ import { useAuth } from 'hooks';
 import css from './TransactionForm.module.css';
 
 
-
+//---------------------------------------------------------------------------------
 export const TransactionForm = () => {
     // const dispatch = useDispatch();
 
@@ -25,6 +27,7 @@ export const TransactionForm = () => {
     //     dispatch(getBalance());
     // }, [dispatch]);
 
+    //! ========================== console balance & isRefreshing ==========================
     const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
     const balanceUser = user.balance; //! тормозит
     console.log("TransactionForm ==> balanceUser:", balanceUser); //!
@@ -36,14 +39,20 @@ export const TransactionForm = () => {
 
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("TransactionForm ==> isRefreshing:", isRefreshing); //!
+    //! _________________________ console balance & isRefreshing _________________________
 
 
+    //! currentDate
+    // const currentDate = moment().format("DD-MM-YYYY_hh:mm:ss");
+    const currentDate = moment().format("DD-MM-YYYY");
+    console.log("currentDate:", currentDate);
 
+    //! Submit FORM
     const handleSubmit = e => {
         e.preventDefault();
 
         const form = e.currentTarget;
-        const currentDate = form.elements.currentDate.value;
+        // const currentDate = form.elements.currentDate.value;
         const description = form.elements.description.value;
         const category = form.elements.category.value;
         const sum = form.elements.sum.value;
@@ -64,7 +73,7 @@ export const TransactionForm = () => {
             sum
         };
 
-        console.log("expensesTransaction", expensesTransaction);
+        console.log("Expenses Transaction:", expensesTransaction);
 
         // dispatch(addExpensesTransaction({ expensesTransaction })); //!!!!!
         toast.success(`Your Expenses transaction has been successfully added`);
@@ -81,7 +90,7 @@ export const TransactionForm = () => {
                 id="transactionForm"
                 onSubmit={handleSubmit}
             >
-
+                {/* //! DATE */}
                 <label className={css.FormLabel}>
                     {/* DATE */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
@@ -91,19 +100,20 @@ export const TransactionForm = () => {
                         // id="inputName"
                         type="text"
                         name="currentDate"
-                        placeholder="Date"
+                        defaultValue={currentDate}
+                    // placeholder="Date"
                     // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
                     // title="Вalance must be whole numbers (or decimal numbers)"
                     // required
                     // value={balance1}
                     // readonly
-                    // defaultValue={"Date"}
                     // defaultValue={(balance1) ? balance1 : balanceAuth}
                     // onChange={handleSubmit}
                     />
                 </label>
                 {/* <br /> */}
 
+                {/* //! DESCRIPTION */}
                 <label className={css.FormLabel}>
                     {/* DESCRIPTION */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
@@ -124,6 +134,7 @@ export const TransactionForm = () => {
                     />
                 </label>
 
+                {/* //! CATEGORY */}
                 <label className={css.FormLabel}
                 // for="productCategory"
                 >
@@ -156,9 +167,7 @@ export const TransactionForm = () => {
                 </select>
                 {/* </p> */}
 
-
-                {/* <br /> */}
-
+                {/* //! SUM */}
                 <label className={css.FormLabel}>
                     {/* SUM */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
@@ -182,8 +191,8 @@ export const TransactionForm = () => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                {/* <br /> */}
 
+                {/* //! Кнопка submit FORM */}
                 <button className={css.FormBtn}
                     type="submit"
                 // disabled={isRefreshing}
@@ -191,7 +200,8 @@ export const TransactionForm = () => {
                     INPUT
                     {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
                 </button>
-                {/* //! Кнопка очистки формы - 2 */}
+
+                {/* //! Кнопка очистки FORM */}
                 <input className={css.FormBtn}
                     type="reset"
                     value="CLEAR"
