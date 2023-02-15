@@ -56,7 +56,9 @@
 
 
 .FormInput {
-    font-weight: 600;
+    width: 200px;
+    height: 28px;
+    font-weight: 500;
     color: #3f3f3f;
     align-items: flex-end;
 }
@@ -64,6 +66,31 @@
     color: #c90000;
 }
 .FormInput::placeholder {
+    color: #c7c7c7;
+    opacity: 0.9;
+}
+
+
+/* ! select Input */
+.selectText {
+    margin-top: 0px;
+    margin-left: -12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #c7c7c7;
+}
+
+.selectInput {
+    width: 200px;
+    height: 28px;
+    font-weight: 500;
+    color: #c7c7c7;
+    align-items: flex-end;
+}
+.selectInput:focus {
+    color: #c90000;
+}
+.selectInput::placeholder {
     color: #c7c7c7;
     opacity: 0.9;
 }

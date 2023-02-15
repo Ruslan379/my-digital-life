@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 // import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
-import { updateBalance } from 'redux/auth/authOperations.js';
+import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -44,8 +44,8 @@ export const TransactionForm = () => {
         const form = e.currentTarget;
         const balance = form.elements.balance.value;
 
-        dispatch(updateBalance({ balance }));
-        toast.success(`Your balance of ${balance} UAN has been successfully added`);
+        // dispatch(addExpensesTransaction({ expensesTransaction })); //!!!!!
+        toast.success(`Your Expenses transaction has been successfully added`);
         // dispatch(getBalance());
         form.reset();
         return;
@@ -57,13 +57,14 @@ export const TransactionForm = () => {
         <>
             <form
                 className={css.Form}
+                id="transactionForm"
                 onSubmit={handleSubmit}
             >
 
                 <label className={css.FormLabel}>
                     {/* DATE */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    <br />
+                    {/* <br /> */}
                     <input
                         className={css.FormInput}
                         // id="inputName"
@@ -80,12 +81,11 @@ export const TransactionForm = () => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                <br />
+                {/* <br /> */}
 
                 <label className={css.FormLabel}>
                     {/* DESCRIPTION */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    <br />
                     <input
                         className={css.FormInput}
                         // id="inputName"
@@ -102,34 +102,37 @@ export const TransactionForm = () => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                <br />
 
-                <label className={css.FormLabel}>
-                    {/* CATEGORY */}
-                    {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    <br />
-                    <input
-                        className={css.FormInput}
-                        // id="inputName"
-                        type="text"
+                <label className={css.FormLabel}
+                    for="productCategory">
+                    {/* Choose a car: */}
+                </label>
+                <p className={css.selectText}>
+                    <select className={css.selectInput}
+                        id="productCategory"
+                        // value={"Product category"}
+                        defaultValue={"Product category"}
                         name="category"
                         placeholder="Product category"
-                    // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
-                    // title="Вalance must be whole numbers (or decimal numbers)"
-                    // required
-                    // readonly
-                    // value={balance1}
-                    // defaultValue={"Product category"}
-                    // defaultValue={(balance1) ? balance1 : balanceAuth}
-                    // onChange={handleSubmit}
-                    />
-                </label>
-                <br />
+                        form="transactionForm"
+                        required
+                    >
+                        {/* <option value="Product category" disabled>******</option> */}
+                        <option disabled>Product category</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </p>
+
+
+                {/* <br /> */}
 
                 <label className={css.FormLabel}>
                     {/* SUM */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    <br />
+                    {/* <br /> */}
                     <input
                         className={css.FormInput}
                         // id="inputName"
@@ -149,7 +152,7 @@ export const TransactionForm = () => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                <br />
+                {/* <br /> */}
 
                 <button className={css.FormBtn}
                     type="submit"
@@ -166,6 +169,7 @@ export const TransactionForm = () => {
                     CLEAR
                     {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
                 </button>
+                <p><input type="submit" value="CLEAR" /></p>
             </form>
 
             <ToastContainer autoClose={1500} theme={"colored"} />
