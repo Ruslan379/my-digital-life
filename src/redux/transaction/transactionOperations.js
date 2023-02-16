@@ -34,20 +34,17 @@ export const fetchContacts = createAsyncThunk(
 );
 
 
-//! POST @ /contacts
-export const addContact = createAsyncThunk(
-    'contacts/addContact',
-    // async ({ name, number }, thunkAPI) => {
-    async ({ name, phone }, thunkAPI) => {
+//!!! POST @ /transactions/expenses
+export const addTransactionExpenses = createAsyncThunk(
+    'transactions/addTransactionExpenses',
+    // async ({ name, phone }, thunkAPI) => {
+    async (credentials, thunkAPI) => {
+        console.log("transactions/addTransactionExpenses ==> credentials:", credentials); //!
         try {
-            console.log("contacts/addContact==>name:", name); //! 
-            console.log("contacts/addContact==>phone:", phone); //! 
-            // const { data } = await axios.post('/contacts', { name, number });
-            const { data } = await axios.post('/contacts', { name, phone });
-            console.log("contacts/addContact ==> data:", data); //!
-            console.log("contacts/addContact ==> data.contact:", data.contact); //!
-            // return data; //??
-            return data.contact;
+            const { data } = await axios.post('/transactions/expenses', credentials);
+            console.log("transactions/addTransactionExpenses ==> data:", data); //!
+            console.log("transactions/addTransactionExpenses ==> data.transaction:", data.transaction); //!
+            return data.transaction;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 400" ? "Ошибка при создании контакта" : error.message}`, { position: "top-center", autoClose: 2000 });
@@ -55,6 +52,8 @@ export const addContact = createAsyncThunk(
         }
     }
 );
+
+
 
 
 //! DELETE @ /contacts/:id
@@ -103,6 +102,7 @@ export const editContact = createAsyncThunk(
         }
     }
 );
+
 
 
 //? GET @ /contacts - получить ВСЕ контакты с mockapi.io

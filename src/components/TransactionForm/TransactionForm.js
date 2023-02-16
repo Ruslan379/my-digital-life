@@ -1,28 +1,31 @@
 // import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// import { Spinner } from 'components/Spinner/Spinner';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import moment from 'moment';
 
 
-// import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
 // import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { addTransactionExpenses } from 'redux/transaction/transactionOperations.js'; //!!!!!
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { useAuth } from 'hooks';
 
-// import { Spinner } from 'components/Spinner/Spinner';
 
 import css from './TransactionForm.module.css';
 
 
 //---------------------------------------------------------------------------------
-export const TransactionForm = () => {
-    // const dispatch = useDispatch();
+export const TransactionForm = ({ transactionsType }) => {
+    const dispatch = useDispatch();
 
+    //!!!!!
     // useEffect(() => {
     //     dispatch(getBalance());
     // }, [dispatch]);
@@ -67,15 +70,16 @@ export const TransactionForm = () => {
         }
 
         const expensesTransaction = {
-            currentDate,
+            transactionsType,
+            date: currentDate,
             description,
             category,
             sum
         };
 
-        console.log("Expenses Transaction:", expensesTransaction);
+        console.log("Expenses Transaction:", expensesTransaction); //!
 
-        // dispatch(addExpensesTransaction({ expensesTransaction })); //!!!!!
+        dispatch(addTransactionExpenses(expensesTransaction));
         toast.success(`Your Expenses transaction has been successfully added`);
         form.reset();
         return;

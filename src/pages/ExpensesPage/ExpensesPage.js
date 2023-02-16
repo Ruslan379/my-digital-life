@@ -17,6 +17,9 @@ import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
 export default function ExpensesPage() {
   const dispatch = useDispatch();
 
+  //! Тип траззакции "expenses"
+  const transactionsType = "expenses"
+
   useEffect(() => {
     dispatch(getBalance());
   }, [dispatch]);
@@ -37,7 +40,7 @@ export default function ExpensesPage() {
       <br />
 
       <h2>Expenses Transactions</h2>
-      <TransactionForm />
+      <TransactionForm transactionsType={transactionsType} />
 
     </Container>
   );
