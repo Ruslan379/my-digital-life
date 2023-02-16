@@ -65,8 +65,8 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                 <p className={css.TransactionListItemText}>
                     {category}
                 </p>
-                <p className={css.TransactionListItemText}>
-                    {sum}
+                <p className={css.TransactionListItemTextSum}>
+                    {-sum}
                 </p>
 
 
@@ -111,7 +111,6 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
 TransactionListItem.propTypes = {
     id: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    transactionsType: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
 };
