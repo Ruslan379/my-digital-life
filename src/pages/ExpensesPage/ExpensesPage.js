@@ -8,10 +8,12 @@ import { Loader } from 'components/Loader/Loader';
 import { getBalance } from 'redux/auth/authOperations';
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { useAuth } from 'hooks';
+import { getAllTransactions } from 'redux/transaction/transactionOperations.js';
 import { selectLoadingTransactions, selectAllTransactions } from 'redux/transaction/transactionSelectors.js';
 
 import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
 import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
+import { TransactionList } from 'components/TransactionList/TransactionList.js';
 
 
 //-----------------------------------------------------------------------------------
@@ -23,6 +25,7 @@ export default function ExpensesPage() {
 
   useEffect(() => {
     dispatch(getBalance());
+    dispatch(getAllTransactions());
   }, [dispatch]);
 
 
@@ -56,8 +59,9 @@ export default function ExpensesPage() {
         <>
           <h2>Expenses transactions list</h2>
 
-          {/* <ContactList
-            visibleContacts={visibleContacts}
+          {/* <TransactionList
+            transactions={transactions}
+            visibleTransaction={visibleTransaction}
           /> */}
 
           {/* <Filter /> */}

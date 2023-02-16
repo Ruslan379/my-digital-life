@@ -12,19 +12,15 @@ import { toast } from 'react-toastify';
 // axios.defaults.baseURL = 'https://contact-book-backend52.onrender.com/api';
 
 
-//! GET @ /contacts
-export const fetchContacts = createAsyncThunk(
-    'contacts/fetchAll',
+//! GET @ /transactions
+export const getAllTransactions = createAsyncThunk(
+    'transactions/getAllTransactions',
     async (_, thunkAPI) => {
         try {
-            // const { data } = await axios.get('/contacts'); //?  //?? 
-            // console.log("contacts/fetchAll==>data:", data); //! //??
-            const { data: { contacts } } = await axios.get('/contacts'); //???
-            // const { contacts } = data; //??  //???
-            console.log("contacts/fetchAll == >data.contacts:", contacts); //!
-            // return data; //?
-            // return data.contacts; //??
-            return contacts; //??  //???
+            const { data: { transactions } } = await axios.get('/transactions');
+            // const { transactions } = data; //??  //???
+            console.log("contacts/getAllTransactions == >data.transactions:", transactions);
+            return transactions;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
