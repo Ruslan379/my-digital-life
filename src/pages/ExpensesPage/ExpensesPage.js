@@ -36,7 +36,7 @@ export default function ExpensesPage() {
   console.log("ExpensesPage ==> isLoading:", isLoading); //!
 
   const transactions = useSelector(selectAllTransactions);
-  console.log("Contacts==>contacts:", transactions); //!
+  console.log("ExpensesPage ==> transactions:", transactions); //!
 
 
   return (
@@ -46,7 +46,7 @@ export default function ExpensesPage() {
       <br />
       <br />
 
-      <h2>Expenses Transactions</h2>
+      <h2>Expenses transactions</h2>
       <TransactionForm transactionsType={transactionsType} />
 
 
