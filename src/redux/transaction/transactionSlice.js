@@ -27,14 +27,15 @@ const handleRejected = (state, { payload }) => {
 const transactionsSlice = createSlice({
     name: 'transactions',
     initialState: {
-        transaction: {
-            transactionsType: "",
-            date: "",
-            dateFilter: "",
-            description: "",
-            category: "",
-            sum: null,
-        },
+        // transaction: {
+        //     transactionsType: "",
+        //     date: "",
+        //     dateFilter: "",
+        //     description: "",
+        //     category: "",
+        //     sum: null,
+        // },
+        allTransactions: [],
         isLoading: false,
         isDeleting: false,
         error: null,
@@ -63,12 +64,15 @@ const transactionsSlice = createSlice({
         [addTransactionExpenses.fulfilled](state, { payload }) {
             console.log("addTransactionExpenses.fulfilled --> payload:", payload); //!
             // state.transaction = payload; //! Пишет весь объект transaction
-            state.transaction.transactionsType = payload.transactionsType
-            state.transaction.date = payload.date
-            state.transaction.dateFilter = payload.dateFilter
-            state.transaction.description = payload.description
-            state.transaction.category = payload.category
-            state.transaction.sum = payload.sum
+
+            // state.transaction.transactionsType = payload.transactionsType
+            // state.transaction.date = payload.date
+            // state.transaction.dateFilter = payload.dateFilter
+            // state.transaction.description = payload.description
+            // state.transaction.category = payload.category
+            // state.transaction.sum = payload.sum
+
+            state.allTransactions.push(payload);
             state.isLoading = false;
             state.error = null;
         },

@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Container } from 'components/Container/Container';
+
+import { Loader } from 'components/Loader/Loader';
 
 import { getBalance } from 'redux/auth/authOperations';
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { useAuth } from 'hooks';
+import { selectLoadingTransactions, selectAllTransactions } from 'redux/transaction/transactionSelectors.js';
 
-
-
-import { Container } from 'components/Container/Container';
 import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
 import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
 
@@ -31,6 +32,12 @@ export default function ExpensesPage() {
   const isRefreshing = useSelector(selectIsRefreshing);
   console.log("ExpensesPage ==> isRefreshing:", isRefreshing); //!
 
+  const isLoading = useSelector(selectLoadingTransactions);
+  console.log("ExpensesPage ==> isLoading:", isLoading); //!
+
+  const transactions = useSelector(selectAllTransactions);
+  console.log("Contacts==>contacts:", transactions); //!
+
 
   return (
     <Container>
@@ -41,6 +48,23 @@ export default function ExpensesPage() {
 
       <h2>Expenses Transactions</h2>
       <TransactionForm transactionsType={transactionsType} />
+
+
+      {isLoading && <Loader />}
+
+      {transactions.length > 0 && (
+        <>
+          <h2>Expenses transactions list</h2>
+
+          {/* <ContactList
+            visibleContacts={visibleContacts}
+          /> */}
+
+          {/* <Filter /> */}
+        </>
+      )}
+
+      {/* {contacts.length > 0 && !isLoading && <DeleteAllContacts />} */}
 
     </Container>
   );
