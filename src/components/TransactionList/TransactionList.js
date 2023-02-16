@@ -16,13 +16,16 @@ export const TransactionList = ({ transactions }) => {
                     Date
                 </p>
                 <p className={css.TransactionListText}>
-                    description
+                    Description
                 </p>
                 <p className={css.TransactionListText}>
-                    category
+                    Category
                 </p>
                 <p className={css.TransactionListText}>
-                    sum
+                    Sum
+                </p>
+                <p className={css.TransactionListText}>
+
                 </p>
             </div>
 

@@ -55,7 +55,7 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
 
     return (
         <>
-            <li className={css.ContactListItem}>
+            <li className={css.TransactionListItem}>
                 <p className={css.TransactionListItemText}>
                     {date}
                 </p>
