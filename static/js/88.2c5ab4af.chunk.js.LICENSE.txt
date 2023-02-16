@@ -1,9 +1,9 @@
 //!
 
-//! ========================== console balance & isRefreshing ==========================
-
 //! _________________________ console balance & isRefreshing _________________________
 
 //! currentDate
+
+//! Тип траззакции "expenses"
 
 //! тормозит
