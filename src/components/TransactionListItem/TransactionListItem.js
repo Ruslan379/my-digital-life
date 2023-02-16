@@ -14,7 +14,7 @@ import css from './TransactionListItem.module.css';
 
 
 // export const ContactListItem = ({ id, name, number }) => { //??
-export const TransactionListItem = ({ id, date, transactionsType, description, category, sum }) => {
+export const TransactionListItem = ({ id, date, description, category, sum }) => {
     // const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
@@ -56,14 +56,19 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
     return (
         <>
             <li className={css.ContactListItem}>
-                <p className={css.ContactListText}
-                >
-                    {/* {date}: */}
-                    Transactions type:
-                    <span className={css.ContactListNumber}
-                    > {transactionsType}
-                    </span>
+                <p className={css.TransactionListItemText}>
+                    {date}
                 </p>
+                <p className={css.TransactionListItemText}>
+                    {description}
+                </p>
+                <p className={css.TransactionListItemText}>
+                    {category}
+                </p>
+                <p className={css.TransactionListItemText}>
+                    {sum}
+                </p>
+
 
                 {/* <button
                     type="button"

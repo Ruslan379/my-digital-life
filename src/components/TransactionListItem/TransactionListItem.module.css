@@ -9,12 +9,15 @@
     border: 1px solid #000000;
     border-radius: 4px;
     
-    background-color: #ffddc3;
+    background-color: #c7c7c7;
 }
 
 
 
 .ContactListText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 24px;
