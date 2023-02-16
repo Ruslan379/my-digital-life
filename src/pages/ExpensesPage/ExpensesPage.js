@@ -59,10 +59,10 @@ export default function ExpensesPage() {
         <>
           <h2>Expenses transactions list</h2>
 
-          {/* <TransactionList
+          <TransactionList
             transactions={transactions}
-            visibleTransaction={visibleTransaction}
-          /> */}
+          // visibleTransaction={visibleTransaction}
+          />
 
           {/* <Filter /> */}
         </>

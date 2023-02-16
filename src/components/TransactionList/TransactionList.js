@@ -1,24 +1,25 @@
 // import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { ContactListItem } from '../ContactListItem/ContactListItem';
+import { TransactionListItem } from '../TransactionListItem/TransactionListItem.js';
 
 
 import css from './TransactionList.module.css';
 
 
 
-export const TransactionList = ({ visibleContacts }) => {
+export const TransactionList = ({ transactions }) => {
     return (
         <ul className={css.ContactList}>
-            {/* {visibleContacts.map(({ id, name, number }) => ( */}
-            {visibleContacts.map(({ _id, name, phone }) => (
-                <ContactListItem
+            {transactions.map(({ _id, date, transactionsType, description, category, sum }) => (
+                <TransactionListItem
                     key={_id}
                     id={_id}
-                    name={name}
-                    // number={number} //??
-                    phone={phone}
+                    date={date}
+                    transactionsType={transactionsType}
+                    description={description}
+                    category={category}
+                    sum={sum}
                 />
             ))}
         </ul>
@@ -27,5 +28,5 @@ export const TransactionList = ({ visibleContacts }) => {
 
 
 TransactionList.propTypes = {
-    visibleContacts: PropTypes.array.isRequired,
+    transactions: PropTypes.array.isRequired,
 };
