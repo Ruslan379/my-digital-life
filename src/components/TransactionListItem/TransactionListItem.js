@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // import { fetchContacts } from 'redux/contacts/contactsOperations'; //??
-import { deleteContact } from 'redux/contacts/contactsOperations';
-import { selectLoading } from 'redux/contacts/contactsSelectors';
+import { deleteTransaction } from 'redux/transaction/transactionOperations.js';
+import { selectLoadingTransactions } from 'redux/transaction/transactionSelectors.js';
 // import { ContactEditor } from 'components/ContactEditor/ContactEditor';
 // import { Spinner } from 'components/Spinner/Spinner';
 // import { Modal } from 'components/Modal/Modal';
@@ -19,14 +19,14 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
 
     const dispatch = useDispatch();
 
-    const isLoading = useSelector(selectLoading);
-    // console.log("ContactListItem==>isLoading:", isLoading); //!
+    const isLoading = useSelector(selectLoadingTransactions);
+    console.log("ContactListItem==>isLoading:", isLoading); //!
 
 
     // const handleDelete = () => dispatch(deleteContact(id)); //??
 
     const handleDelete = () => {
-        dispatch(deleteContact(id));
+        dispatch(deleteTransaction(id));
         // dispatch(fetchContacts()); //??
     };
 

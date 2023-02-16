@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 // axios.defaults.baseURL = 'https://contact-book-backend52.onrender.com/api';
 
 
-//! GET @ /transactions
+//!!! GET @ /transactions
 export const getAllTransactions = createAsyncThunk(
     'transactions/getAllTransactions',
     async (_, thunkAPI) => {
@@ -52,16 +52,14 @@ export const addTransactionExpenses = createAsyncThunk(
 
 
 
-//! DELETE @ /contacts/:id
-export const deleteContact = createAsyncThunk(
-    'contacts/deleteContact',
-    async (contactId, thunkAPI) => {
+//!!! DELETE @ /transactions/:id
+export const deleteTransaction = createAsyncThunk(
+    'transactions/deleteTransaction',
+    async (transactionId, thunkAPI) => {
         try {
-            console.log("contacts/deleteContact==>contactId:", contactId); //!
-            await axios.delete(`/contacts/${contactId}`);
-            // const response = await axios.delete(`/contacts/${contactId}`); //!!!  Ошибка Репеты
-            // console.log("deleteContact==>response.data", response.data); //!!!  пустой объект
-            // return response.data; //!!!  Ошибка Репеты
+            console.log("transactions/deleteTransaction ==> transactionId:", transactionId); //!
+            const { data: { contactId } } = await axios.delete(`/transactions/${transactionId}`);
+            console.log("transactions/deleteTransaction ==> contactId:", contactId); //!
             return contactId;
         } catch (error) {
             console.log(error); //!

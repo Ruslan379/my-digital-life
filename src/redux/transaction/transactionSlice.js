@@ -3,7 +3,7 @@ import { logOut } from 'redux/auth/authOperations';
 import {
     getAllTransactions,
     addTransactionExpenses,
-    deleteContact,
+    deleteTransaction,
     editContact,
     fetchContactsFromMmockapiIo,
     deleteContactFromMmockapiIo
@@ -43,14 +43,14 @@ const transactionsSlice = createSlice({
     extraReducers: {
         [getAllTransactions.pending]: handlePending,
         [addTransactionExpenses.pending]: handlePending, //!!!
-        [deleteContact.pending]: handlePending,
+        [deleteTransaction.pending]: handlePending,
         [editContact.pending]: handlePending,
         [fetchContactsFromMmockapiIo.pending]: handlePending,
         [deleteContactFromMmockapiIo.pending]: handlePending,
 
         [getAllTransactions.rejected]: handleRejected,
         [addTransactionExpenses.rejected]: handleRejected, //!!!
-        [deleteContact.rejected]: handleRejected,
+        [deleteTransaction.rejected]: handleRejected,
         [editContact.rejected]: handleRejected,
         [fetchContactsFromMmockapiIo.rejected]: handleRejected,
         [deleteContactFromMmockapiIo.rejected]: handleRejected,
@@ -77,7 +77,8 @@ const transactionsSlice = createSlice({
             state.error = null;
         },
 
-        [deleteContact.fulfilled](state, { payload }) {
+        //!!!
+        [deleteTransaction.fulfilled](state, { payload }) {
             state.isLoading = false;
             state.error = null;
             //! вариант Репеты:
@@ -85,10 +86,10 @@ const transactionsSlice = createSlice({
             // state.items.splice(index, 1);
             //! МОЙ вариант:
             // const newContact = state.items.filter(contact => contact.id !== payload);
-            // console.log("deleteContact==>payload:", payload); //!
+            // console.log("deleteTransaction==>payload:", payload); //!
             // state.items = state.items.filter(contact => contact.id !== payload); //??
-            state.items = state.items.filter(contact => contact._id !== payload);
-            // console.log("deleteContact==>state.items:", state.items); //!
+            state.allTransactions = state.allTransactions.filter(transaction => transaction._id !== payload);
+            // console.log("deleteTransaction==>state.items:", state.items); //!
             // state = { items: newContact }
         },
 

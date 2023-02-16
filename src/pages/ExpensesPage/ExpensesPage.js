@@ -24,8 +24,8 @@ export default function ExpensesPage() {
   const transactionsType = "expenses"
 
   useEffect(() => {
-    dispatch(getBalance());
     dispatch(getAllTransactions());
+    dispatch(getBalance());
   }, [dispatch]);
 
 
@@ -58,7 +58,6 @@ export default function ExpensesPage() {
       {transactions.length > 0 && (
         <>
           <h2>Expenses transactions list</h2>
-
           <TransactionList
             transactions={transactions}
           // visibleTransaction={visibleTransaction}
