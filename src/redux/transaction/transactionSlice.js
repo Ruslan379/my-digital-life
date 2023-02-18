@@ -35,6 +35,7 @@ const transactionsSlice = createSlice({
         //     category: "",
         //     sum: null,
         // },
+        balanceNew: 0,
         allTransactions: [],
         isLoading: false,
         isDeleting: false,
@@ -72,7 +73,10 @@ const transactionsSlice = createSlice({
             // state.transaction.description = payload.description
             // state.transaction.category = payload.category
             // state.transaction.sum = payload.sum
-            state.allTransactions.push(payload);
+
+            // state.allTransactions.push(payload); // old
+            state.allTransactions.push(payload.transaction);
+            state.balanceNew = payload.balanceNew
             state.isLoading = false;
             state.error = null;
         },

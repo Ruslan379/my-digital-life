@@ -40,7 +40,8 @@ export const addTransactionExpenses = createAsyncThunk(
             const { data } = await axios.post('/transactions/expenses', credentials);
             console.log("transactions/addTransactionExpenses ==> data:", data); //!
             console.log("transactions/addTransactionExpenses ==> data.transaction:", data.transaction); //!
-            return data.transaction;
+            console.log("transactions/addTransactionExpenses ==> data.balanceNew:", data.balanceNew); //!
+            return data;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 400" ? "Ошибка при создании контакта" : error.message}`, { position: "top-center", autoClose: 2000 });
@@ -48,7 +49,6 @@ export const addTransactionExpenses = createAsyncThunk(
         }
     }
 );
-
 
 
 
@@ -68,6 +68,7 @@ export const deleteTransaction = createAsyncThunk(
         }
     }
 );
+
 
 
 //! PATCH @ /contacts/:id

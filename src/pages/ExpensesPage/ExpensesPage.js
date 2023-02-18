@@ -45,7 +45,7 @@ export default function ExpensesPage() {
   return (
     <Container>
       <h2>Balance: {balance}</h2>
-      <BalanceForm />
+      <BalanceForm balance={balance} />
       <br />
       <br />
 

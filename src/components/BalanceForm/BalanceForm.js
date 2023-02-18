@@ -1,14 +1,15 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-// import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
-import { updateBalance } from 'redux/auth/authOperations.js';
+import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
+// import { updateBalance } from 'redux/auth/authOperations.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
+import { selectBalanceNew } from 'redux/transaction/transactionSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { useAuth } from 'hooks';
 
@@ -23,19 +24,22 @@ import css from './BalanceForm.module.css';
 
 
 
-export const BalanceForm = () => {
+export const BalanceForm = ({ balance }) => {
+    console.log("BalanceForm ==> BALANCE:", balance); //!
     const dispatch = useDispatch();
 
     //! Модальное окно
     const [showModal, setShowModal] = useState(false);
+    // const [newBalance, setNewBalance] = useState(0); //?...!
     const toggleModal = () => {
         setShowModal(!showModal);
     };
-    console.log("BalanceForm ==> showModal:", showModal); //!
 
-    // useEffect(() => {
-    //     dispatch(getBalance());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(getBalance());
+        // }, [dispatch]);
+    });
+
 
     const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
     const balanceUser = user.balance; //! тормозит
@@ -51,6 +55,12 @@ export const BalanceForm = () => {
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("BalanceForm ==> isRefreshing:", isRefreshing); //!
 
+    const balanceNew = useSelector(selectBalanceNew);
+    console.log("BalanceForm ==> balanceNew:", balanceNew); //!
+
+    // setNewBalance(balanceNew)
+    // console.log("BalanceForm ==> newBalance:", newBalance); //?...!
+
 
 
     const handleSubmit = e => {
@@ -61,7 +71,6 @@ export const BalanceForm = () => {
 
         dispatch(updateBalance({ balance }));
         toast.success(`Your balance has been successfully updated to ${balance} UAN`);
-        // dispatch(getBalance());
         form.reset();
         return;
     };
@@ -90,7 +99,8 @@ export const BalanceForm = () => {
                         // required
                         // value={balance1}
                         // readonly
-                        defaultValue={balance1}
+                        // defaultValue={balance} //! тормозит
+                        placeholder={balance1}
                     // defaultValue={(balance1) ? balance1 : balanceAuth}
                     // onChange={handleSubmit}
                     />
