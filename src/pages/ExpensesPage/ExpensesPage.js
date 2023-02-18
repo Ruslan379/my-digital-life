@@ -28,7 +28,7 @@ export default function ExpensesPage() {
     dispatch(getBalance());
   }, [dispatch]);
 
-
+  //! ========================== console balance & isRefreshing ==========================
   const balance = useSelector(selectBalance);
   console.log("ExpensesPage ==> balance:", balance); //!
 
@@ -40,7 +40,7 @@ export default function ExpensesPage() {
 
   const transactions = useSelector(selectAllTransactions);
   console.log("ExpensesPage ==> transactions:", transactions); //!
-
+  //! _________________________ console balance & isRefreshing _________________________
 
   return (
     <Container>
