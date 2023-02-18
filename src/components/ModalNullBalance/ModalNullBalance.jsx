@@ -7,7 +7,7 @@ import css from 'components/ModalNullBalance/ModalNullBalance.module.css'
 
 
 
-const modalRoot = document.querySelector('#modal-root2');
+const modalRoot = document.querySelector('#modal-root');
 
 
 export function ModalNullBalance({ children, onClose }) {
@@ -37,7 +37,7 @@ export function ModalNullBalance({ children, onClose }) {
 
     return createPortal(
       <div
-        className={css.Overlay}
+        className={css.Overlay1}
         onClick={handleBackdropClick}
       >
           <div className={css.Modal}>

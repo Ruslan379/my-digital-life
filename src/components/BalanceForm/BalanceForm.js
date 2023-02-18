@@ -16,7 +16,7 @@ import { useAuth } from 'hooks';
 
 //! Модальное окно
 import { ModalNullBalance } from 'components/ModalNullBalance/ModalNullBalance.jsx';
-import { ContactEditor } from 'components/ContactEditor/ContactEditor';
+// import { ContactEditor } from 'components/ContactEditor/ContactEditor';
 import { ModalNullBalanceWindow } from 'components/ModalNullBalanceWindow/ModalNullBalanceWindow.js';
 
 import css from './BalanceForm.module.css';
@@ -45,6 +45,8 @@ export const BalanceForm = () => {
 
     const balance1 = useSelector(selectBalance);
     console.log("BalanceForm ==> balance1:", balance1); //!
+    console.log("BalanceForm ==> typeof balance1:", (typeof Number(balance1))); //!
+
 
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("BalanceForm ==> isRefreshing:", isRefreshing); //!
@@ -75,9 +77,8 @@ export const BalanceForm = () => {
                 <label
                     className={css.FormLabel}
                 >
-                    Balance:&nbsp;&nbsp;
+                    Balance:&nbsp;&nbsp;&nbsp;
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    <br />
                     <input
                         className={css.FormInput}
                         // id="inputName"
@@ -94,7 +95,6 @@ export const BalanceForm = () => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                <br />
 
 
                 <button
@@ -120,19 +120,9 @@ export const BalanceForm = () => {
             </form>
 
             {/* //! Модальное окно */}
-            <button type="button" onClick={toggleModal}>Модальное окно</button>
-            {/* {balance1 && showModal && ( */}
-            {showModal && (
+            {!balance1 && (
                 <ModalNullBalance onClose={toggleModal}>
-                    {/* <ModalNullBalanceWindow toggleModal={toggleModal} /> */}
-                    {/* // <ModalNullBalance> */}
-                    {/* <ModalNullBalanceWindow /> */}
-                    <ContactEditor
-                        id={8}
-                        name={"name"}
-                        phone={"phone"}
-                        toggleModal={toggleModal}
-                    />
+                    <ModalNullBalanceWindow />
                 </ModalNullBalance>
             )}
 
