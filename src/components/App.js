@@ -57,7 +57,6 @@ export const App = () => {
                                 // <RestrictedRoute redirectTo="/" component={<RegisterPage />} /> //! 2
                                 // <RestrictedRegistrRoute redirectTo="/login" component={<RegisterPage />} /> //! 3
                                 <RestrictedRoute redirectTo="/login" component={<RegisterPage />} /> //! 4
-
                             }
                         />
                         <Route

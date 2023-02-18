@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 // import { selectLoading } from 'redux/contacts/contactsSelectors';
 // import { Spinner } from 'components/Spinner/Spinner';
 
-import css from './ModalNullBalanceWindow.module.css';
+// import css from './ModalNullBalanceWindow.module.css';
 
 
 // export const ContactEditor = ({ id, name, number, toggleModal }) => {
-export const ModalNullBalanceWindow = ({ toggleModal }) => {
+// export const ModalNullBalanceWindow = ({ toggleModal }) => {
+export const ModalNullBalanceWindow = () => {
     // const dispatch = useDispatch();
 
     // const isLoading = useSelector(selectLoading);
@@ -42,12 +43,12 @@ export const ModalNullBalanceWindow = ({ toggleModal }) => {
     return (
         <div>
             WINDOW
-            <button className={css.FormBtnEdit}
+            {/* <button className={css.FormBtnEdit}
                 type="button"
-                onClick={toggleModal}
+            // onClick={toggleModal}
             >
                 Click
-            </button>
+            </button> */}
         </div>
         //     <>
         //         <form

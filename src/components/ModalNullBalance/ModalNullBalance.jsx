@@ -7,7 +7,7 @@ import css from 'components/ModalNullBalance/ModalNullBalance.module.css'
 
 
 
-const modalRoot = document.querySelector('#modal-root');
+const modalRoot = document.querySelector('#modal-root2');
 
 
 export function ModalNullBalance({ children, onClose }) {

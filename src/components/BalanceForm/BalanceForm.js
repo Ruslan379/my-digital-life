@@ -16,7 +16,7 @@ import { useAuth } from 'hooks';
 
 //! Модальное окно
 import { ModalNullBalance } from 'components/ModalNullBalance/ModalNullBalance.jsx';
-// import { ContactEditor } from 'components/ContactEditor/ContactEditor';
+import { ContactEditor } from 'components/ContactEditor/ContactEditor';
 import { ModalNullBalanceWindow } from 'components/ModalNullBalanceWindow/ModalNullBalanceWindow.js';
 
 import css from './BalanceForm.module.css';
@@ -25,8 +25,9 @@ import css from './BalanceForm.module.css';
 
 export const BalanceForm = () => {
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
 
+    //! Модальное окно
+    const [showModal, setShowModal] = useState(false);
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -116,19 +117,24 @@ export const BalanceForm = () => {
                     {/* {isRefreshing ? <Spinner size="32">CONFIRM</Spinner> : "CONFIRM"} */}
                 </button>
 
-                {/* //! Модальное окно */}
-                {balance1 && (
-                    <ModalNullBalance onClose={toggleModal}>
-                        <ModalNullBalanceWindow toggleModal={toggleModal} />
-                        {/* <ContactEditor
-                            id={8}
-                            name={"name"}
-                            phone={"phone"}
-                            toggleModal={toggleModal}
-                        /> */}
-                    </ModalNullBalance>
-                )}
             </form>
+
+            {/* //! Модальное окно */}
+            <button type="button" onClick={toggleModal}>Модальное окно</button>
+            {/* {balance1 && showModal && ( */}
+            {showModal && (
+                <ModalNullBalance onClose={toggleModal}>
+                    {/* <ModalNullBalanceWindow toggleModal={toggleModal} /> */}
+                    {/* // <ModalNullBalance> */}
+                    {/* <ModalNullBalanceWindow /> */}
+                    <ContactEditor
+                        id={8}
+                        name={"name"}
+                        phone={"phone"}
+                        toggleModal={toggleModal}
+                    />
+                </ModalNullBalance>
+            )}
 
             <ToastContainer autoClose={1500} theme={"colored"} />
         </>
