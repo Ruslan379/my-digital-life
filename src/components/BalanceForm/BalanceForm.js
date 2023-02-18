@@ -93,7 +93,7 @@ export const BalanceForm = ({ balance }) => {
                         // required
                         // value={balanceNew}
                         // readonly
-                        // defaultValue={balance} //! тормозит
+                        // defaultValue={balanceNew} //! тормозит
                         placeholder={balanceNew}
                     // defaultValue={(balanceNew) ? balanceNew : balanceAuth}
                     // onChange={handleSubmit}
