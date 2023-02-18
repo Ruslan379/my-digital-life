@@ -60,6 +60,10 @@ export const TransactionForm = ({ transactionsType }) => {
         const category = form.elements.category.value;
         const sum = form.elements.sum.value;
 
+        if (!description) {
+            toast.warning(`Please enter a product description`);
+            return;
+        }
         if (category === "true") {
             toast.warning(`Please choose a product category`);
             return;
@@ -175,9 +179,8 @@ export const TransactionForm = ({ transactionsType }) => {
                 <label className={css.FormLabel}>
                     {/* SUM */}
                     {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    {/* <br /> */}
                     <input
-                        className={css.FormInput}
+                        className={css.FormInputSum}
                         // id="inputName"
                         // type="text"
                         type="text"
@@ -193,6 +196,7 @@ export const TransactionForm = ({ transactionsType }) => {
                     // defaultValue={"0,00"}
                     // defaultValue={(balance1) ? balance1 : balanceAuth}
                     // onChange={handleSubmit}
+                    // text-align="center"
                     />
                 </label>
 
