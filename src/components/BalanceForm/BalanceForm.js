@@ -9,9 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
-import { selectBalanceNew } from 'redux/transaction/transactionSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
-import { useAuth } from 'hooks';
+// import { useAuth } from 'hooks';
 
 // import { Spinner } from 'components/Spinner/Spinner';
 
@@ -41,25 +40,20 @@ export const BalanceForm = ({ balance }) => {
     });
 
 
-    const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
-    const balanceUser = user.balance; //! тормозит
-    console.log("BalanceForm ==> balanceUser:", balanceUser); //!
-    console.log("BalanceForm ==> balanceAuth:", balanceAuth); //!
-    console.log("BalanceForm ==> isRefreshingAuth:", isRefreshingAuth); //!
+    // const { isRefreshing: isRefreshingAuth, user, balance: balanceAuth } = useAuth();
+    // const balanceUser = user.balance; //! тормозит
+    // console.log("BalanceForm ==> balanceUser:", balanceUser); //!
+    // console.log("BalanceForm ==> balanceAuth:", balanceAuth); //!
+    // console.log("BalanceForm ==> isRefreshingAuth:", isRefreshingAuth); //!
 
-    const balance1 = useSelector(selectBalance);
-    console.log("BalanceForm ==> balance1:", balance1); //!
-    console.log("BalanceForm ==> typeof balance1:", (typeof Number(balance1))); //!
+    const balanceNew = useSelector(selectBalance);
+    console.log("BalanceForm ==> balanceNew:", balanceNew); //!
+    console.log("BalanceForm ==> typeof balanceNew:", (typeof Number(balanceNew))); //!
 
 
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("BalanceForm ==> isRefreshing:", isRefreshing); //!
 
-    const balanceNew = useSelector(selectBalanceNew);
-    console.log("BalanceForm ==> balanceNew:", balanceNew); //!
-
-    // setNewBalance(balanceNew)
-    // console.log("BalanceForm ==> newBalance:", newBalance); //?...!
 
 
 
@@ -95,13 +89,13 @@ export const BalanceForm = ({ balance }) => {
                         name="balance"
                         pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
                         title="Вalance must be whole numbers (or decimal numbers)"
-                        // disabled={balance1} //! пока не блокировать
+                        // disabled={balanceNew} //! пока не блокировать
                         // required
-                        // value={balance1}
+                        // value={balanceNew}
                         // readonly
                         // defaultValue={balance} //! тормозит
-                        placeholder={balance1}
-                    // defaultValue={(balance1) ? balance1 : balanceAuth}
+                        placeholder={balanceNew}
+                    // defaultValue={(balanceNew) ? balanceNew : balanceAuth}
                     // onChange={handleSubmit}
                     />
                 </label>
@@ -110,14 +104,14 @@ export const BalanceForm = ({ balance }) => {
                 <button
                     className={css.FormBtn}
                     type="submit"
-                // disabled={balance1} //! пока не блокировать
+                // disabled={balanceNew} //! пока не блокировать
                 >
                     {/* CONFIRM */}
                     {
-                        balance1
+                        balanceNew
                             ?
                             <span className={css.btnConfirmDisabled}>
-                                CONFIRM
+                                NO CONFIRM
                             </span>
                             :
                             <span className={css.btnConfirmActive}>
@@ -130,7 +124,7 @@ export const BalanceForm = ({ balance }) => {
             </form>
 
             {/* //! Модальное окно */}
-            {!balance1 && (
+            {!balanceNew && (
                 <ModalNullBalance onClose={toggleModal}>
                     <ModalNullBalanceWindow />
                 </ModalNullBalance>

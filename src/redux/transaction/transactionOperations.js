@@ -30,18 +30,16 @@ export const getAllTransactions = createAsyncThunk(
 );
 
 
-//!!! POST @ /transactions/expenses
-export const addTransactionExpenses = createAsyncThunk(
-    'transactions/addTransactionExpenses',
-    // async ({ name, phone }, thunkAPI) => {
+//!!! POST @ /transactions
+export const addTransaction = createAsyncThunk(
+    'transactions/addTransaction',
     async (credentials, thunkAPI) => {
-        console.log("transactions/addTransactionExpenses ==> credentials:", credentials); //!
+        console.log("transactions/addTransaction ==> credentials:", credentials); //!
         try {
-            const { data } = await axios.post('/transactions/expenses', credentials);
-            console.log("transactions/addTransactionExpenses ==> data:", data); //!
-            console.log("transactions/addTransactionExpenses ==> data.transaction:", data.transaction); //!
-            console.log("transactions/addTransactionExpenses ==> data.balanceNew:", data.balanceNew); //!
-            return data;
+            const { data } = await axios.post('/transactions', credentials);
+            console.log("transactions/addTransaction ==> data:", data); //!
+            console.log("transactions/addTransaction ==> data.transaction:", data.transaction);  //!
+            return data.transaction;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 400" ? "Ошибка при создании контакта" : error.message}`, { position: "top-center", autoClose: 2000 });
@@ -52,15 +50,16 @@ export const addTransactionExpenses = createAsyncThunk(
 
 
 
-//!!! DELETE @ /transactions/:id
+//!!! DELETE @ /transactions/:transactionId
 export const deleteTransaction = createAsyncThunk(
     'transactions/deleteTransaction',
-    async (transactionId, thunkAPI) => {
+    async (credentials, thunkAPI) => {
         try {
-            console.log("transactions/deleteTransaction ==> transactionId:", transactionId); //!
-            const { data: { contactId } } = await axios.delete(`/transactions/${transactionId}`);
-            console.log("transactions/deleteTransaction ==> contactId:", contactId); //!
-            return contactId;
+            console.log("transactions/deleteTransaction ==> credentials:", credentials); //!
+            const { data } = await axios.delete(`/transactions/${credentials}`);
+            console.log("transactions/deleteTransaction ==> data:", data); //!
+            console.log("transactions/deleteTransaction ==> data.transactionId:", data.transactionId); //!
+            return data.transactionId;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
@@ -71,7 +70,7 @@ export const deleteTransaction = createAsyncThunk(
 
 
 
-//! PATCH @ /contacts/:id
+//? PATCH @ /contacts/:id
 export const editContact = createAsyncThunk(
     'contacts/editContact',
     // async ({ id, newName, newNumber }, thunkAPI) => { //! 1-й вариант
@@ -145,21 +144,3 @@ export const deleteContactFromMmockapiIo = createAsyncThunk(
         }
     }
 );
-
-
-
-
-// export const AddUploadContacts = createAsyncThunk(
-//     'contacts/AddUploadContacts',
-//     async (_, { rejectWithValue }) => {
-//         try {
-//             const uploadContacts = await axios.get('https://6326c1ee70c3fa390f9bc51d.mockapi.io/contacts');
-//             console.log("uploadContactsOperations-axiosGet ==> uploadContacts:", uploadContacts.data); //!
-//             return uploadContacts.data;
-//         } catch (error) {
-//             console.log(error);
-//             toast.error(`Ошибка запроса: ${error.message}`, { position: "top-center", autoClose: 2000 });
-//             return rejectWithValue(error.message);
-//         }
-//     },
-// );

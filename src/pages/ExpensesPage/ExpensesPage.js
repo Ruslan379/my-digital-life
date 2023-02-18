@@ -20,7 +20,7 @@ import { TransactionList } from 'components/TransactionList/TransactionList.js';
 export default function ExpensesPage() {
   const dispatch = useDispatch();
 
-  //! Тип траззакции "expenses"
+  //! Тип тразакции "expenses"
   const transactionsType = "expenses"
 
   useEffect(() => {
@@ -64,6 +64,7 @@ export default function ExpensesPage() {
           />
 
           {/* <Filter /> */}
+
         </>
       )}
 

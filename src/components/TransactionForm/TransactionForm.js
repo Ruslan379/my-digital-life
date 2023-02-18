@@ -12,7 +12,7 @@ import moment from 'moment';
 
 // import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
 import { getBalance } from 'redux/auth/authOperations';
-import { addTransactionExpenses } from 'redux/transaction/transactionOperations.js'; //!!!!!
+import { addTransaction } from 'redux/transaction/transactionOperations.js'; //!!!!!
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
@@ -84,7 +84,7 @@ export const TransactionForm = ({ transactionsType }) => {
 
         console.log("Expenses Transaction:", expensesTransaction); //!
 
-        dispatch(addTransactionExpenses(expensesTransaction));
+        dispatch(addTransaction(expensesTransaction));
         toast.success(`Your Expenses transaction has been successfully added`);
         form.reset();
         dispatch(getBalance());

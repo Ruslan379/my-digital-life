@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from 'redux/auth/authOperations';
 import {
     getAllTransactions,
-    addTransactionExpenses,
+    addTransaction,
     deleteTransaction,
     editContact,
     fetchContactsFromMmockapiIo,
@@ -35,7 +35,6 @@ const transactionsSlice = createSlice({
         //     category: "",
         //     sum: null,
         // },
-        balanceNew: 0,
         allTransactions: [],
         isLoading: false,
         isDeleting: false,
@@ -43,14 +42,14 @@ const transactionsSlice = createSlice({
     },
     extraReducers: {
         [getAllTransactions.pending]: handlePending,
-        [addTransactionExpenses.pending]: handlePending, //!!!
+        [addTransaction.pending]: handlePending, //!!!
         [deleteTransaction.pending]: handlePending,
         [editContact.pending]: handlePending,
         [fetchContactsFromMmockapiIo.pending]: handlePending,
         [deleteContactFromMmockapiIo.pending]: handlePending,
 
         [getAllTransactions.rejected]: handleRejected,
-        [addTransactionExpenses.rejected]: handleRejected, //!!!
+        [addTransaction.rejected]: handleRejected, //!!!
         [deleteTransaction.rejected]: handleRejected,
         [editContact.rejected]: handleRejected,
         [fetchContactsFromMmockapiIo.rejected]: handleRejected,
@@ -64,8 +63,8 @@ const transactionsSlice = createSlice({
             state.error = null;
         },
         //!!!
-        [addTransactionExpenses.fulfilled](state, { payload }) {
-            console.log("addTransactionExpenses.fulfilled --> payload:", payload); //!
+        [addTransaction.fulfilled](state, { payload }) {
+            console.log("addTransaction.fulfilled --> payload:", payload); //!
             // state.transaction = payload; //! Пишет весь объект transaction
             // state.transaction.transactionsType = payload.transactionsType
             // state.transaction.date = payload.date
@@ -73,10 +72,7 @@ const transactionsSlice = createSlice({
             // state.transaction.description = payload.description
             // state.transaction.category = payload.category
             // state.transaction.sum = payload.sum
-
-            // state.allTransactions.push(payload); // old
-            state.allTransactions.push(payload.transaction);
-            state.balanceNew = payload.balanceNew
+            state.allTransactions.push(payload); // old
             state.isLoading = false;
             state.error = null;
         },
