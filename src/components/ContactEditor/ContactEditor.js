@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { editContact } from 'redux/contacts/contactsOperations';
 import PropTypes from 'prop-types';
 
-
+import { editContact } from 'redux/contacts/contactsOperations';
 import { selectLoading } from 'redux/contacts/contactsSelectors';
 import { Spinner } from 'components/Spinner/Spinner';
 

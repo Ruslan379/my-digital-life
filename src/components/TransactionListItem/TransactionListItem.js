@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,46 +9,34 @@ import { selectLoadingTransactions } from 'redux/transaction/transactionSelector
 // import { Spinner } from 'components/Spinner/Spinner';
 // import { Modal } from 'components/Modal/Modal';
 
+//! Модальное окно
+import { ModalTransactionLDelete } from 'components/ModalTransactionLDelete/ModalTransactionLDelete.jsx';
+// import { ContactEditor } from 'components/ContactEditor/ContactEditor';
+import { ModalTransactionLDeleteWindow } from 'components/ModalTransactionLDeleteWindow/ModalTransactionLDeleteWindow.js';
+
 import css from './TransactionListItem.module.css';
 
 
 
-// export const ContactListItem = ({ id, name, number }) => { //??
 export const TransactionListItem = ({ id, date, description, category, sum }) => {
-    // const [showModal, setShowModal] = useState(false);
-
     const dispatch = useDispatch();
+
+    //! Модальное окно
+    const [showModal, setShowModal] = useState(false);
+    // const [newBalance, setNewBalance] = useState(0); //?...!
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    }
+
 
     const isLoading = useSelector(selectLoadingTransactions);
     console.log("ContactListItem==>isLoading:", isLoading); //!
 
 
-    // const handleDelete = () => dispatch(deleteContact(id)); //??
-
-    const handleDelete = () => {
-        dispatch(deleteTransaction(id));
-        // dispatch(fetchContacts()); //??
+    const handleDeleteQuestion = () => {
+        toggleModal();
+        // dispatch(deleteTransaction(id)); //!!!!!
     };
-
-
-    // const toggleModal = () => {
-    //     setShowModal(!showModal);
-    // };
-
-    // const handleEdit = () => {
-    //     toggleModal()
-    //     //! +++++++++++++++++++++++++++++++++++
-    //     // const newName = "RoseEDIT"
-    //     // const newNumber = "000-00-00"
-    //     // console.log("id:", id);
-    //     // console.log("newName:", newName);
-    //     // console.log("newNumber:", newNumber);
-
-    //     // ContactForm(newName, newNumber)
-
-    //     // dispatch(editContact({ id, newName, newNumber }))
-    //     //! +++++++++++++++++++++++++++++++++++
-    // };
 
 
 
@@ -83,7 +71,7 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                 <button
                     type="button"
                     className={css.ContactListDeleteBtn}
-                    onClick={handleDelete}
+                    onClick={handleDeleteQuestion}
                     // onClick={() => deleteContact(id)}
                     disabled={isLoading}
                 >
@@ -91,18 +79,15 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                     {/* {isLoading ? [<Spinner size="18" />, " Deleting..."] : "Delete"} */}
                 </button>
 
-                {/* {showModal && (
-                    <Modal onClose={toggleModal}>
-                        <ContactEditor
+                {/* //! Модальное окно */}
+                {showModal && (
+                    <ModalTransactionLDelete onClose={toggleModal}>
+                        <ModalTransactionLDeleteWindow
                             id={id}
-                            name={name}
-                            // number={number}
-                            phone={phone}
                             toggleModal={toggleModal}
-
                         />
-                    </Modal>
-                )} */}
+                    </ModalTransactionLDelete>
+                )}
             </li>
         </>
     );
@@ -113,4 +98,5 @@ TransactionListItem.propTypes = {
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    sum: PropTypes.number.isRequired,
 };
