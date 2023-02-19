@@ -1,3 +1,0 @@
-//!
-
-//! добавлен сразу в onClick ==> Upload contacts from mockapi.io
