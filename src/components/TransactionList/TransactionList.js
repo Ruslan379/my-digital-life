@@ -30,10 +30,11 @@ export const TransactionList = ({ transactions }) => {
             </div>
 
             <ul className={css.ContactList}>
-                {transactions.map(({ _id, date, description, category, sum }) => (
+                {transactions.map(({ _id, transactionsType, date, description, category, sum }) => (
                     <TransactionListItem
                         key={_id}
                         id={_id}
+                        transactionsType={transactionsType}
                         date={date}
                         description={description}
                         category={category}

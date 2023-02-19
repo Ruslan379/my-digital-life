@@ -19,7 +19,7 @@ import css from './TransactionListItem.module.css';
 
 
 
-export const TransactionListItem = ({ id, date, description, category, sum }) => {
+export const TransactionListItem = ({ id, date, transactionsType, description, category, sum }) => {
     // const dispatch = useDispatch(); //!!!!!
 
     //! Модальное окно
@@ -53,8 +53,19 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                 <p className={css.TransactionListItemText}>
                     {category}
                 </p>
-                <p className={css.TransactionListItemTextSum}>
-                    {-sum}
+                <p
+                    // className={css.TransactionListItemTextSum}
+                    className={
+                        (transactionsType === "expenses")
+                            ?
+                            css.TransactionListItemTextSumExpenses
+                            :
+                            css.TransactionListItemTextSumIncome
+                    }
+                >
+
+                    {/* {-sum} */}
+                    {(transactionsType === "expenses") ? - sum : sum}
                 </p>
 
                 <button

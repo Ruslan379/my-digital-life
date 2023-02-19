@@ -1,88 +1,75 @@
-// import axios from 'axios';
-// import { useState } from 'react';
-// import { useEffect } from 'react';
-
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
-
-import { fetchContactsFromMmockapiIo, addContact } from 'redux/contacts/contactsOperations';
-// import { getUploadContacts } from 'redux/uploadContacts/uploadContactsSelectors';
-import { selectLoading, selectAllContacts, getUploadContacts } from 'redux/contacts/contactsSelectors';
 
 import { Container } from 'components/Container/Container';
+
 import { Loader } from 'components/Loader/Loader';
-import { UploadContactsList } from 'components/UploadContactsList/UploadContactsList';
 
-import css from './IncomePage.module.css';
+import { getBalance } from 'redux/auth/authOperations';
+import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
+// import { useAuth } from 'hooks';
+import { getAllTransactions } from 'redux/transaction/transactionOperations.js';
+import { selectLoadingTransactions, selectAllTransactions } from 'redux/transaction/transactionSelectors.js';
+
+import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
+import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
+import { TransactionList } from 'components/TransactionList/TransactionList.js';
 
 
+//-----------------------------------------------------------------------------------
 export default function IncomePage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const isLoading = useSelector(selectLoading);
-  // console.log("Contacts==>isLoading:", isLoading); //!
+  //! Тип тразакции "expenses"
+  const transactionsType = "income"
 
-  const uploadContacts = useSelector(getUploadContacts);
-  console.log("UploadContacts==>uploadContacts:", uploadContacts); //!
+  useEffect(() => {
+    dispatch(getAllTransactions());
+    dispatch(getBalance());
+  }, [dispatch]);
 
-  const contacts = useSelector(selectAllContacts);
-  console.log("Contacts==>contacts:", contacts); //!
+  //! ========================== console balance & isRefreshing ==========================
+  const balance = useSelector(selectBalance);
+  console.log("ExpensesPage ==> balance:", balance); //!
 
-  const totalUploadContacts = uploadContacts.length;
+  const isRefreshing = useSelector(selectIsRefreshing);
+  console.log("ExpensesPage ==> isRefreshing:", isRefreshing); //!
 
+  const isLoading = useSelector(selectLoadingTransactions);
+  console.log("ExpensesPage ==> isLoading:", isLoading); //!
 
-  // useEffect(() => {
-  //   dispatch(fetchContactsFromMmockapiIo());
-  // }, [dispatch]);
-
-  //! добавлен сразу в onClick ==> Upload contacts from mockapi.io
-  // const handlUploadContacts = () => dispatch(fetchContactsFromMmockapiIo());
-
-  const handlAddUploadContacts = () => {
-    for (const uploadContact of uploadContacts) {
-      const name = uploadContact.name;
-      // const number = uploadContact.number; //??
-      const phone = uploadContact.number;
-      dispatch(addContact({ name, phone }));
-    };
-    navigate("/contacts", { replace: true });
-  };
-
-
-
+  const transactions = useSelector(selectAllTransactions);
+  console.log("ExpensesPage ==> transactions:", transactions); //!
+  //! _________________________ console balance & isRefreshing _________________________
 
   return (
     <Container>
-      <button
-        type="button"
-        className={uploadContacts.length === 0 ? css.UploadContactsBtn : css.hide}
-        // onClick={handlUploadContacts}
-        onClick={() => dispatch(fetchContactsFromMmockapiIo())}
-        disabled={uploadContacts.length > 0}
-      >
-        Upload contacts from mockapi.io
-      </button>
+      <h2>Balance: {balance}</h2>
+      <BalanceForm balance={balance} />
       <br />
+      <br />
+
+      <h2>Expenses transactions</h2>
+      <TransactionForm transactionsType={transactionsType} />
+
 
       {isLoading && <Loader />}
 
-      {uploadContacts.length > 0 && !isLoading && (
+      {transactions.length > 0 && (
         <>
-          <p className={css.TotalUploadContacts}>Total upload contacts from mockapi.io: {totalUploadContacts}</p>
-          <UploadContactsList uploadContacts={uploadContacts} />
+          <h2>Expenses transactions list</h2>
+          <TransactionList
+            transactions={transactions}
+          // visibleTransaction={visibleTransaction}
+          />
+
+          {/* <Filter /> */}
+
         </>
       )}
 
-      <br />
-      <button
-        type="button"
-        className={uploadContacts.length > 0 ? css.AddUploadContactsBtn : css.hide}
-        onClick={handlAddUploadContacts}
-        disabled={uploadContacts.length === 0}
-      >
-        Add upload contacts from mockapi.io in Contacts List
-      </button>
+      {/* {contacts.length > 0 && !isLoading && <DeleteAllContacts />} */}
+
     </Container>
   );
 }
