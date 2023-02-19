@@ -22,8 +22,6 @@ export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
 
 
 
-
-
     return (
         <>
             {isLoading && <Spinner />}
@@ -39,7 +37,13 @@ export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
                     YES
                 </button>
 
-                <button type='button' className={css.modalBtnNo}>NO</button>
+                <button
+                    className={css.modalBtnNo}
+                    type='button'
+                    onClick={toggleModal}
+                >
+                    NO
+                </button>
             </div>
         </>
     );
