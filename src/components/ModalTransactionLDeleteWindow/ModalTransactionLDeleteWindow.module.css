@@ -1,60 +1,77 @@
 /* import styled from '@emotion/styled'; */
 
 
-.FormEdit {
-    display: flex;
+.modalWindow {
+    /* display: flex; */
     /* flex-direction: column; */
-
     /* align-items: flex-start; */
-    align-items: center;
+    /* align-items: center; */
 
-    padding-top: 70px;
-    padding-bottom: 70px;
+    text-align: center;
+
+    padding-top: 50px;
+    padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
+    
+
     color: #ffffff;
     border: 2px solid #707070;
     border-radius: 8px;
     box-shadow: 0px 4px 4px #00000026;
-    background-color: #000c75;
+    background-color: #ffe9da;
 }
 
-.FormLabelEdit {
-    display: flex;
-    flex-direction: column;
+.modalTitle {
+    /* display: flex; */
+    /* flex-direction: column; */
+    margin-bottom: 40px;
     align-items: center;
-
-    font-size: 18px;
-    font-weight: 500;
-    color: #382600;
+    font-size: 20px;
+    font-weight: 700;
+    color: #a70000;
 
 }
 
-.FormBtnEdit {
+.modalBtnYes {
     border: none;
     font: inherit;
     cursor: pointer;
+    padding: 8px 48px;
+    margin-right: 10px;
     outline: none;
     align-items: center;
     /* margin-left: auto; */
     border-radius: 4px;
+    background-color: #810000;
+    color: #ffffff;
+    font-weight: 500;
+    box-shadow: 0px 4px 4px #00000026;
+}
+.modalBtnYes:hover,
+.modalBtnYes:focus {
+    background-color: #be0000;
+}
+
+
+.modalBtnNo {
+    border: none;
+    font: inherit;
+    cursor: pointer;
     padding: 8px 48px;
+    /* margin-right: 10px; */
+    outline: none;
+    align-items: center;
+    /* margin-left: auto; */
+    border-radius: 4px;
     background-color: #314200;
     color: #ffffff;
     font-weight: 500;
-
     box-shadow: 0px 4px 4px #00000026;
 }
 
-
-.FormBtnEdit:hover,
-.FormBtnEdit:focus {
+.modalBtnNo:hover,
+.modalBtnNo:focus {
     background-color: #435c00;
-}
-
-
-.FormInputEdit {
-    font-weight: 600;
-    color: #612c00;
 }
 

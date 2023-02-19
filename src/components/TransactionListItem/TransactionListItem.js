@@ -20,7 +20,7 @@ import css from './TransactionListItem.module.css';
 
 
 export const TransactionListItem = ({ id, date, description, category, sum }) => {
-    // const dispatch = useDispatch();
+    // const dispatch = useDispatch(); //!!!!!
 
     //! Модальное окно
     const [showModal, setShowModal] = useState(false);
