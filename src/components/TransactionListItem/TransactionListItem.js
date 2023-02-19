@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { fetchContacts } from 'redux/contacts/contactsOperations'; //??
-import { deleteTransaction } from 'redux/transaction/transactionOperations.js';
+
+// import { deleteTransaction } from 'redux/transaction/transactionOperations.js'; //!!!!!
 import { selectLoadingTransactions } from 'redux/transaction/transactionSelectors.js';
-// import { ContactEditor } from 'components/ContactEditor/ContactEditor';
+
 // import { Spinner } from 'components/Spinner/Spinner';
-// import { Modal } from 'components/Modal/Modal';
+
 
 //! Модальное окно
 import { ModalTransactionLDelete } from 'components/ModalTransactionLDelete/ModalTransactionLDelete.jsx';
@@ -19,11 +20,10 @@ import css from './TransactionListItem.module.css';
 
 
 export const TransactionListItem = ({ id, date, description, category, sum }) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     //! Модальное окно
     const [showModal, setShowModal] = useState(false);
-    // const [newBalance, setNewBalance] = useState(0); //?...!
     const toggleModal = () => {
         setShowModal(!showModal);
     }
@@ -57,17 +57,6 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                     {-sum}
                 </p>
 
-
-                {/* <button
-                    type="button"
-                    className={css.ContactListEditBtn}
-                    onClick={handleEdit}
-                    disabled={isLoading}
-                >
-                    Edit
-                    {isLoading ? [<Spinner size="18" />, " Editing..."] : "Edit"}
-                </button> */}
-
                 <button
                     type="button"
                     className={css.ContactListDeleteBtn}
@@ -78,17 +67,17 @@ export const TransactionListItem = ({ id, date, description, category, sum }) =>
                     Delete
                     {/* {isLoading ? [<Spinner size="18" />, " Deleting..."] : "Delete"} */}
                 </button>
-
-                {/* //! Модальное окно */}
-                {showModal && (
-                    <ModalTransactionLDelete onClose={toggleModal}>
-                        <ModalTransactionLDeleteWindow
-                            id={id}
-                            toggleModal={toggleModal}
-                        />
-                    </ModalTransactionLDelete>
-                )}
             </li>
+
+            {/* //! Модальное окно */}
+            {showModal && (
+                <ModalTransactionLDelete onClose={toggleModal}>
+                    <ModalTransactionLDeleteWindow
+                        id={id}
+                        toggleModal={toggleModal}
+                    />
+                </ModalTransactionLDelete>
+            )}
         </>
     );
 };
