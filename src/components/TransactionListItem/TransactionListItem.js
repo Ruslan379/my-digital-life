@@ -54,7 +54,7 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
                     {category}
                 </p>
                 <p
-                    // className={css.TransactionListItemTextSum}
+                    // className={css.TransactionListItemTextSum} 
                     className={
                         (transactionsType === "expenses")
                             ?
@@ -63,7 +63,6 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
                             css.TransactionListItemTextSumIncome
                     }
                 >
-
                     {/* {-sum} */}
                     {(transactionsType === "expenses") ? - sum : sum}
                 </p>
@@ -96,6 +95,7 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
 TransactionListItem.propTypes = {
     id: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    transactionsType: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     sum: PropTypes.number.isRequired,
