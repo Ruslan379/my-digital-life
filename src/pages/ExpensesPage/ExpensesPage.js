@@ -60,6 +60,7 @@ export default function ExpensesPage() {
           <h2>Expenses transactions list</h2>
           <TransactionList
             transactions={transactions}
+            transactionsType={transactionsType}
           // visibleTransaction={visibleTransaction}
           />
 
