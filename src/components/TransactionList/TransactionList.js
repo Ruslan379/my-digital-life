@@ -15,12 +15,12 @@ export const TransactionList = ({ transactions, transactionsType }) => {
     const transactionsIncome = transactions.filter(transaction => transaction.transactionsType === "income");
     console.log("TransactionList ==> transactionsIncome:", transactionsIncome); //!
 
-    let visibleTransaction = []
+    let selectionByTransactionType = []
     if (transactionsType === "expenses") {
-        visibleTransaction = transactionsExpenses
+        selectionByTransactionType = transactionsExpenses
     }
     if (transactionsType === "income") {
-        visibleTransaction = transactionsIncome
+        selectionByTransactionType = transactionsIncome
     }
 
     return (
@@ -44,7 +44,7 @@ export const TransactionList = ({ transactions, transactionsType }) => {
             </div>
 
             <ul className={css.ContactList}>
-                {visibleTransaction.map(({ _id, transactionsType, date, description, category, sum }) => (
+                {selectionByTransactionType.map(({ _id, transactionsType, date, description, category, sum }) => (
                     <TransactionListItem
                         key={_id}
                         id={_id}
