@@ -49,7 +49,7 @@ export default function IncomePage() {
       <br />
       <br />
 
-      <h2>Expenses transactions</h2>
+      <h2>Income transactions</h2>
       <TransactionForm transactionsType={transactionsType} />
 
 
@@ -57,7 +57,7 @@ export default function IncomePage() {
 
       {transactions.length > 0 && (
         <>
-          <h2>Expenses transactions list</h2>
+          <h2>Income transactions list</h2>
           <TransactionList
             transactions={transactions}
           // visibleTransaction={visibleTransaction}
