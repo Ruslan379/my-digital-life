@@ -27,6 +27,11 @@ export const Navigation = () => {
                     <Link to="/income">
                         INCOME
                     </Link>
+
+                    <Link to="/reports">
+                        REPORTS
+                    </Link>
+
                     {/* //! Маршруты contacts */}
                     <Link to="/contacts">
                         Contacts
@@ -35,6 +40,7 @@ export const Navigation = () => {
                     <Link to="/upload">
                         Upload Contacts
                     </Link>
+
                     {/* //! Маршрут АВТАР */}
                     <Link to="/avatar">
                         Change Avatar

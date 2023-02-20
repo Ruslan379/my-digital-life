@@ -20,6 +20,8 @@ const LoginPage = lazy(() => import('../pages/Login.js'));
 //! Маршруты EXPENSES и INCOME
 const ExpensesPage = lazy(() => import('../pages/ExpensesPage/ExpensesPage.js'));
 const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage.js'));
+//! Маршруты REPORTS
+const ReportsPage = lazy(() => import('../pages/ReportsPage/ReportsPage.js'));
 
 //! Маршруты contacts
 const ContactsPage = lazy(() => import('../pages/Contacts.js'));
@@ -76,6 +78,12 @@ export const App = () => {
                             path="/income"
                             element={
                                 <PrivateRoute redirectTo="/login" component={<IncomePage />} />
+                            }
+                        />
+                        <Route
+                            path="/reports"
+                            element={
+                                <PrivateRoute redirectTo="/login" component={<ReportsPage />} />
                             }
                         />
                         {/* //! Маршруты contacts */}
