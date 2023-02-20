@@ -12,7 +12,6 @@ import { selectLoadingTransactions } from 'redux/transaction/transactionSelector
 
 //! Модальное окно
 import { ModalTransactionLDelete } from 'components/ModalTransactionLDelete/ModalTransactionLDelete.jsx';
-// import { ContactEditor } from 'components/ContactEditor/ContactEditor';
 import { ModalTransactionLDeleteWindow } from 'components/ModalTransactionLDeleteWindow/ModalTransactionLDeleteWindow.js';
 
 import css from './TransactionListItem.module.css';
@@ -33,10 +32,10 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
     console.log("ContactListItem==>isLoading:", isLoading); //!
 
 
-    const handleDeleteQuestion = () => {
-        toggleModal();
-        // dispatch(deleteTransaction(id)); //!!!!!
-    };
+    // const handleDeleteQuestion = () => {
+    //     toggleModal();
+    //     // dispatch(deleteTransaction(id)); //!!!!!
+    // };
 
 
 
@@ -70,7 +69,7 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
                 <button
                     type="button"
                     className={css.ContactListDeleteBtn}
-                    onClick={handleDeleteQuestion}
+                    onClick={toggleModal}
                     // onClick={() => deleteContact(id)}
                     disabled={isLoading}
                 >

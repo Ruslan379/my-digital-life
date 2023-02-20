@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { deleteTransaction } from 'redux/transaction/transactionOperations.js';
-import { selectLoadingTransactions } from 'redux/transaction/transactionSelectors.js';
+import { logOut } from 'redux/auth/authOperations';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors.js';
 import { Loader } from 'components/Loader/Loader';
 
-import css from './ModalTransactionLDeleteWindow.module.css';
+import css from './ModalLogOutWindow.module.css';
 
 //------------------------------------------------------------------------------------------------------------------
-export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
+export const ModalLogOutWindow = ({ toggleModal }) => {
     const dispatch = useDispatch();
 
-    const isLoading = useSelector(selectLoadingTransactions);
-    console.log("ModalTransactionLDeleteWindow ==> isLoading:", isLoading); //!
+    const isLoading = useSelector(selectIsLoggedIn);
+    // console.log("ModalTransactionLDeleteWindow ==> isLoading:", isLoading); //!
 
-    const handleDelete = () => {
-        dispatch(deleteTransaction(id)); //!!!!!
+    const handleLogOut = () => {
+        dispatch(logOut());
         toggleModal();
     };
 
@@ -24,15 +24,15 @@ export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
 
     return (
         <>
-            {isLoading && <Loader />}
+            {!isLoading && <Loader />}
 
             <div className={css.modalWindow}>
 
-                <p className={css.modalTitle}>Are you sure?</p>
+                <p className={css.modalTitle}>Do you really want to leave?</p>
 
                 <button className={css.modalBtnYes}
                     type='button'
-                    onClick={handleDelete}
+                    onClick={handleLogOut}
                 >
                     YES
                 </button>
@@ -49,7 +49,7 @@ export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
     );
 }
 
-ModalTransactionLDeleteWindow.propTypes = {
+ModalLogOutWindow.propTypes = {
     id: PropTypes.string.isRequired,
     toggleModal: PropTypes.func.isRequired,
 };
