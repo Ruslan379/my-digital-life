@@ -21,7 +21,7 @@ export const RegisterForm = () => {
         const form = e.currentTarget;
         dispatch(
             register({
-                name: form.elements.name.value,
+                name: (form.elements.name.value) ? form.elements.name.value : "User",
                 email: form.elements.email.value,
                 password: form.elements.password.value,
             })

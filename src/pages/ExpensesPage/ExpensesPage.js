@@ -5,7 +5,7 @@ import { Container } from 'components/Container/Container';
 
 import { Loader } from 'components/Loader/Loader';
 
-import { getBalance } from 'redux/auth/authOperations';
+import { getBalanceIsNotNewUser } from 'redux/auth/authOperations';
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { useAuth } from 'hooks';
 import { getAllTransactions } from 'redux/transaction/transactionOperations.js';
@@ -25,7 +25,7 @@ export default function ExpensesPage() {
 
   useEffect(() => {
     dispatch(getAllTransactions());
-    dispatch(getBalance());
+    dispatch(getBalanceIsNotNewUser());
   }, [dispatch]);
 
   //! ========================== console balance & isRefreshing ==========================
@@ -50,7 +50,9 @@ export default function ExpensesPage() {
       <br />
 
       <h2>Expenses transactions</h2>
-      <TransactionForm transactionsType={transactionsType} />
+      <TransactionForm
+        balance={balance}
+        transactionsType={transactionsType} />
 
 
       {isLoading && <Loader />}

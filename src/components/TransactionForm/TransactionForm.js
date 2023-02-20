@@ -11,7 +11,7 @@ import moment from 'moment';
 
 
 // import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
-import { getBalance } from 'redux/auth/authOperations';
+import { getBalanceIsNotNewUser } from 'redux/auth/authOperations';
 import { addTransaction } from 'redux/transaction/transactionOperations.js'; //!!!!!
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
@@ -23,12 +23,12 @@ import css from './TransactionForm.module.css';
 
 
 //---------------------------------------------------------------------------------
-export const TransactionForm = ({ transactionsType }) => {
+export const TransactionForm = ({ balance, transactionsType }) => {
     const dispatch = useDispatch();
 
     //!!!!!
     // useEffect(() => {
-    //     dispatch(getBalance());
+    //     dispatch(getBalanceIsNotNewUser());
     // }, [dispatch]);
 
     //! ========================== console balance & isRefreshing ==========================
@@ -73,6 +73,10 @@ export const TransactionForm = ({ transactionsType }) => {
             toast.warning(`Please enter the transaction amount`);
             return;
         }
+        if ((balance - sum) < 0) {
+            toast.error(`Transaction NOT ALLOWED!!!\n Your expenses exceed your balance`);
+            return;
+        }
 
         const expensesTransaction = {
             transactionsType,
@@ -85,9 +89,15 @@ export const TransactionForm = ({ transactionsType }) => {
         console.log("Expenses Transaction:", expensesTransaction); //!
 
         dispatch(addTransaction(expensesTransaction));
-        toast.success(`Your Expenses transaction has been successfully added`);
+
+        if (transactionsType === "expenses") {
+            toast.info(`Your Expenses transaction has been successfully added`);
+        }
+        if (transactionsType === "income") {
+            toast.success(`Your Expenses transaction has been successfully added`);
+        }
         form.reset();
-        dispatch(getBalance());
+        dispatch(getBalanceIsNotNewUser());
         return;
     };
 

@@ -5,8 +5,9 @@ import {
     logOut,
     refreshUser,
     changeAvatar,
-    getBalance,
-    updateBalance
+    getBalanceIsNotNewUser,
+    updateBalance,
+    changeIsNotNewUser
 } from './authOperations';
 
 
@@ -17,6 +18,7 @@ const initialState = {
     user: { name: null, email: null, avatarURL: null },
     balance: 0,
     token: null,
+    isNotNewUser: false,
     isLoggedIn: false,
     isRegistrIn: false, //? for Kapu$ta
     isRefreshing: false,
@@ -150,20 +152,22 @@ const authSlice = createSlice({
         },
 
         //! ПОЛУЧИТЬ баланс пользователя
-        [getBalance.pending](state, { payload }) {
+        [getBalanceIsNotNewUser.pending](state, { payload }) {
             // state.isRefreshing = true; //! Зацикливается
             state.error = null;
         },
-        [getBalance.fulfilled](state, { payload }) {
-            console.log("getBalance.fulfilled --> payload:", payload); //!
-            state.balance = payload;
+        [getBalanceIsNotNewUser.fulfilled](state, { payload }) {
+            console.log("getBalanceIsNotNewUser.fulfilled --> payload:", payload); //!
+            state.balance = payload; //! old
+            state.balance = payload.balance;
+            state.isNotNewUser = payload.isNotNewUser;
             // state.user.balance = payload;
             // state.isLoggedIn = true;
             // state.isRegistrIn = true; //? for Kapu$ta
             state.isRefreshing = false;
             state.error = null;
         },
-        [getBalance.rejected](state, { payload }) {
+        [getBalanceIsNotNewUser.rejected](state, { payload }) {
             // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;
@@ -185,6 +189,26 @@ const authSlice = createSlice({
             state.error = null;
         },
         [updateBalance.rejected](state, { payload }) {
+            // state.user = { name: null, email: null, avatarURL: null };
+            // state.token = null;
+            // state.isLoggedIn = false;
+            state.isRefreshing = false;
+            state.error = payload;
+        },
+        //! ИЗМЕНИТЬ статус  пользователя --> user.isNotNewUser: false (если balanceNew === 0)
+        [changeIsNotNewUser.pending](state, { payload }) {
+            state.isRefreshing = true;
+            state.error = null;
+        },
+        [changeIsNotNewUser.fulfilled](state, { payload }) {
+            console.log("isNotNewUser.fulfilled --> payload:", payload); //!
+            state.isNotNewUser = payload;
+            // state.isLoggedIn = true;
+            // state.isRegistrIn = true; //? for Kapu$ta
+            state.isRefreshing = false;
+            state.error = null;
+        },
+        [changeIsNotNewUser.rejected](state, { payload }) {
             // state.user = { name: null, email: null, avatarURL: null };
             // state.token = null;
             // state.isLoggedIn = false;

@@ -80,7 +80,7 @@ export default function UploadAvatarPage() {
 
 
     dispatch(changeAvatar(formData));
-    navigate("/contacts", { replace: true });
+    navigate("/expenses", { replace: true });
   };
 
 

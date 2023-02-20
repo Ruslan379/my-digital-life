@@ -211,14 +211,16 @@ export const changeAvatar = createAsyncThunk(
 );
 
 
-//! ПОЛУЧИТЬ баланс пользователя
-export const getBalance = createAsyncThunk(
-    'auth/getBalance',
+//! ПОЛУЧИТЬ баланс пользователя и статус  пользователя --> user.isNewUser
+export const getBalanceIsNotNewUser = createAsyncThunk(
+    'auth/getBalanceIsNotNewUser',
     async (_, thunkAPI) => {
         try {
             const { data } = await axios.get('/users/balance');
-            console.log("auth/getBalance == >data.balance:", data.balance); //!
-            return data.balance;
+            console.log("auth/getBalanceIsNotNewUser == >data.balance:", data.balance); //!
+            console.log("auth/getBalanceIsNotNewUser == >data.isNewUser:", data.isNewUser); //!
+            // return data.balance;
+            return data;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
@@ -230,7 +232,7 @@ export const getBalance = createAsyncThunk(
 
 //! ИЗМЕНИТЬ баланс пользователя
 export const updateBalance = createAsyncThunk(
-    'auth/changeBalance',
+    'auth/updateBalance',
     async (credentials, thunkAPI) => {
         console.log("auth/changeBalance --> credentials:", credentials); //!
         try {
@@ -244,6 +246,25 @@ export const updateBalance = createAsyncThunk(
         }
     }
 );
+
+//! ИЗМЕНИТЬ статус  пользователя --> user.isNewUser: false (если balanceNew === 0)
+export const changeIsNotNewUser = createAsyncThunk(
+    'auth/changeIsNotNewUser',
+    async (credentials, thunkAPI) => {
+        console.log("auth/changeIsNotNewUser --> credentials:", credentials); //!
+        try {
+            const { data } = await axios.patch('/users/isnotnewuser', credentials);
+            console.log("auth/changeIsNotNewUser == >data.isNotNewUser:", data.isNotNewUser); //!
+            return data.isNotNewUser;
+        } catch (error) {
+            console.log(error); //!
+            toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 404" ? "Нет такой коллекции пользователей" : error.message}`, { position: "top-center", autoClose: 2000 });
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+
 
 //? +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   //! --------------Добавленные users -------------------

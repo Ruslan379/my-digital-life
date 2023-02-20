@@ -50,8 +50,7 @@ export const ModalTransactionLDeleteWindow = ({ id, toggleModal }) => {
 }
 
 ModalTransactionLDeleteWindow.propTypes = {
-    id: PropTypes.number.isRequired,
-    // date: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     toggleModal: PropTypes.func.isRequired,
 };
 

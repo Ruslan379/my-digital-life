@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import { getBalance, updateBalance } from 'redux/auth/authOperations.js';
-// import { updateBalance } from 'redux/auth/authOperations.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
+import { changeIsNotNewUser, getBalanceIsNotNewUser, updateBalance } from 'redux/auth/authOperations.js';
+// import { changeIsNotNewUser, refreshUser, updateBalance } from 'redux/auth/authOperations.js'; //! зацикливается
+import { selectIsRefreshing, selectBalance, selecIsNotNewUser } from 'redux/auth/authSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
 // import { useAuth } from 'hooks';
 
@@ -24,7 +23,7 @@ import css from './BalanceForm.module.css';
 
 
 export const BalanceForm = ({ balance }) => {
-    console.log("BalanceForm ==> BALANCE:", balance); //!
+    console.log("BalanceForm ==> ({BALANCE}):", balance); //!
     const dispatch = useDispatch();
 
     //! Модальное окно
@@ -35,7 +34,8 @@ export const BalanceForm = ({ balance }) => {
     };
 
     useEffect(() => {
-        dispatch(getBalance());
+        dispatch(getBalanceIsNotNewUser());
+        // dispatch(refreshUser()); //! зацикливается
         // }, [dispatch]);
     });
 
@@ -54,6 +54,9 @@ export const BalanceForm = ({ balance }) => {
     const isRefreshing = useSelector(selectIsRefreshing);
     console.log("BalanceForm ==> isRefreshing:", isRefreshing); //!
 
+    const NotNewUser = useSelector(selecIsNotNewUser);
+    console.log("BalanceForm ==> isNotNewUser:", NotNewUser); //!
+
 
 
 
@@ -63,6 +66,13 @@ export const BalanceForm = ({ balance }) => {
         const form = e.currentTarget;
         const balance = form.elements.balance.value;
 
+        const isNotNewUser = true
+        //! ИЗМЕНИТЬ статус  пользователя --> user.isNotNewUser: false (если balanceNew === 0)
+        if (!balanceNew && !NotNewUser) {
+            // dispatch(changeIsNotNewUser("isNewUser"))
+            dispatch(changeIsNotNewUser({ isNotNewUser }))
+        };
+        //! ИЗМЕНИТЬ баланс пользователя
         dispatch(updateBalance({ balance }));
         toast.success(`Your balance has been successfully updated to ${balance} UAN`);
         form.reset();
@@ -89,7 +99,7 @@ export const BalanceForm = ({ balance }) => {
                         name="balance"
                         pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
                         title="Вalance must be whole numbers (or decimal numbers)"
-                        // disabled={balanceNew} //! пока не блокировать
+                        disabled={NotNewUser} //! пока не блокировать
                         // required
                         // value={balanceNew}
                         // readonly
@@ -104,11 +114,11 @@ export const BalanceForm = ({ balance }) => {
                 <button
                     className={css.FormBtn}
                     type="submit"
-                // disabled={balanceNew} //! пока не блокировать
+                    disabled={NotNewUser} //! пока не блокировать
                 >
                     {/* CONFIRM */}
                     {
-                        balanceNew
+                        NotNewUser
                             ?
                             <span className={css.btnConfirmDisabled}>
                                 NO CONFIRM
@@ -124,7 +134,7 @@ export const BalanceForm = ({ balance }) => {
             </form>
 
             {/* //! Модальное окно */}
-            {!balanceNew && (
+            {!balanceNew && !NotNewUser && (
                 <ModalNullBalance onClose={toggleModal}>
                     <ModalNullBalanceWindow />
                 </ModalNullBalance>
