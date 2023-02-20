@@ -94,7 +94,7 @@ export const TransactionForm = ({ balance, transactionsType }) => {
             toast.info(`Your Expenses transaction has been successfully added`);
         }
         if (transactionsType === "income") {
-            toast.success(`Your Expenses transaction has been successfully added`);
+            toast.success(`Your Income transaction has been successfully added`);
         }
         form.reset();
         dispatch(getBalanceIsNotNewUser());
@@ -173,17 +173,19 @@ export const TransactionForm = ({ balance, transactionsType }) => {
                     {/* <option value="Product category" disabled>******</option> */}
                     {/* <option className={css.selectPlaceholder} disabled>Product category</option> */}
                     <option className={css.selectPlaceholder} value disabled selected>Product category</option>
-                    <option value="transport">Transport</option>
-                    <option value="products">Products</option>
-                    <option value="health">Health</option>
-                    <option value="alcohol">Alcohol</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="housing">Housing</option>
-                    <option value="technique">Technique</option>
-                    <option value="communal">Communal, communication</option>
-                    <option value="sports">Sports, hobbies</option>
-                    <option value="education">Education</option>
-                    <option value="other">Other</option>
+                    <option value="Transport" disabled={transactionsType === "income"}>Transport</option>
+                    <option value="Products" disabled={transactionsType === "income"}>Products</option>
+                    <option value="Health" disabled={transactionsType === "income"}>Health</option>
+                    <option value="Alcohol" disabled={transactionsType === "income"}>Alcohol</option>
+                    <option value="Entertainment" disabled={transactionsType === "income"}>Entertainment</option>
+                    <option value="Housing" disabled={transactionsType === "income"}>Housing</option>
+                    <option value="Technique" disabled={transactionsType === "income"}>Technique</option>
+                    <option value="Communal, communication" disabled={transactionsType === "income"}>Communal, communication</option>
+                    <option value="Sports, hobbies" disabled={transactionsType === "income"}>Sports, hobbies</option>
+                    <option value="Education" disabled={transactionsType === "income"}>Education</option>
+                    <option value="Other" disabled={transactionsType === "income"}>Other</option>
+                    <option value="Salary" disabled={transactionsType === "expenses"}>Salary</option>
+                    <option value="Add.Income" disabled={transactionsType === "expenses"}>Add.Income</option>
                 </select>
                 {/* </p> */}
 
