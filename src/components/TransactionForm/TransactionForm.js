@@ -56,7 +56,7 @@ export const TransactionForm = ({ balance, transactionsType }) => {
         e.preventDefault();
 
         const form = e.currentTarget;
-        // const currentDate = form.elements.currentDate.value;
+        const date = form.elements.date.value;
         const description = form.elements.description.value;
         const category = form.elements.category.value;
         const sum = form.elements.sum.value;
@@ -78,17 +78,17 @@ export const TransactionForm = ({ balance, transactionsType }) => {
             return;
         }
 
-        const expensesTransaction = {
+        const transaction = {
             transactionsType,
-            date: currentDate,
+            date,
             description,
             category,
             sum
         };
 
-        console.log("Expenses Transaction:", expensesTransaction); //!
+        console.log("transaction:", transaction); //!
 
-        dispatch(addTransaction(expensesTransaction));
+        dispatch(addTransaction(transaction));
 
         if (transactionsType === "expenses") {
             toast.info(`Your Expenses transaction has been successfully added`);
@@ -100,6 +100,10 @@ export const TransactionForm = ({ balance, transactionsType }) => {
         dispatch(getBalanceIsNotNewUser());
         return;
     };
+
+    // const handleBlur = () => {
+    //     console.log("handleBlur");
+    // }
 
 
 
@@ -113,14 +117,13 @@ export const TransactionForm = ({ balance, transactionsType }) => {
                 {/* //! DATE */}
                 <label className={css.FormLabel}>
                     {/* DATE */}
-                    {/* {isRefreshing ? "Please wait..." : "Balance"} */}
-                    {/* <br /> */}
                     <input
                         className={css.FormInput}
                         // id="inputName"
                         type="text"
-                        name="currentDate"
+                        name="date"
                         defaultValue={currentDate}
+                    // blur={handleBlur}
                     // placeholder="Date"
                     // pattern="^(([0-9]*)|(([0-9]*)\.([0-9]*)))$"
                     // title="Вalance must be whole numbers (or decimal numbers)"
@@ -131,12 +134,10 @@ export const TransactionForm = ({ balance, transactionsType }) => {
                     // onChange={handleSubmit}
                     />
                 </label>
-                {/* <br /> */}
 
                 {/* //! DESCRIPTION */}
                 <label className={css.FormLabel}>
                     {/* DESCRIPTION */}
-                    {/* {isRefreshing ? "Please wait..." : "Balance"} */}
                     <input
                         className={css.FormInput}
                         // id="inputName"
@@ -192,7 +193,6 @@ export const TransactionForm = ({ balance, transactionsType }) => {
                 {/* //! SUM */}
                 <label className={css.FormLabel}>
                     {/* SUM */}
-                    {/* {isRefreshing ? "Please wait..." : "Balance"} */}
                     <input
                         className={css.FormInputSum}
                         // id="inputName"
@@ -210,7 +210,6 @@ export const TransactionForm = ({ balance, transactionsType }) => {
                     // defaultValue={"0,00"}
                     // defaultValue={(balance1) ? balance1 : balanceAuth}
                     // onChange={handleSubmit}
-                    // text-align="center"
                     />
                 </label>
 
