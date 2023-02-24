@@ -36,38 +36,14 @@
 }
 
 
-.btnGoToHomePage {
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  padding: 8px 48px;
-  margin-top: 20px;
-  /* margin-right: 10px; */
-  outline: none;
-  align-items: center;
-  text-decoration: none;
-  /* margin-left: auto; */
-  border-radius: 4px;
-  background-color: #314200;
-  color: #ffffff;
-  font-weight: 500;
-  box-shadow: 0px 4px 4px #00000026;
-}
-
-.btnGoToHomePage:hover,
-.btnGoToHomePage:focus {
-  background-color: #435c00;
-}
-
-
-.btnGoToHomePage2 {
+.UploadContactsBtn {
     /* display: none; */
   border: none;
   font: inherit;
   cursor: pointer;
   outline: none;
 
-  margin-top: 20px;
+  /* margin-left: auto; */
   border-radius: 4px;
   padding: 12px 24px;
   background-color: #14006d;
@@ -76,12 +52,11 @@
 
   box-shadow: 0px 4px 4px #00000026;
 }
-.btnGoToHomePage2:hover,
-.btnGoToHomePage2:focus {
+
+.UploadContactsBtn:hover,
+.UploadContactsBtn:focus {
   background-color: #2400c4;;
 }
-
-
 
 
 .AddUploadContactsBtn {
@@ -101,12 +76,12 @@
   box-shadow: 0px 4px 4px #00000026;
 }
 
+
+
 .AddUploadContactsBtn:hover,
 .AddUploadContactsBtn:focus {
   background-color: #2400c4;
 }
-
-
 
 .hide {
   display: none;
@@ -119,4 +94,3 @@
   font-weight: 700;
   color: #2400c4;
 }
-
