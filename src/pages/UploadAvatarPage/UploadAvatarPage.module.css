@@ -19,6 +19,7 @@
 
 }
 
+
 .UserProfileTitle {
   font-weight: 700;
   font-size: 24px;
@@ -27,6 +28,7 @@
   /* align-items: flex-start; */
   margin-bottom: 50px;
 }
+
 
 .Title {
   font-weight: 700;
@@ -53,13 +55,15 @@
   font-weight: 500;
   box-shadow: 0px 4px 4px #00000026;
 }
-
 .btnGoToHomePage:hover,
 .btnGoToHomePage:focus {
   background-color: #435c00;
 }
 
 
+
+
+/* ! Пока не надо */
 .btnGoToHomePage2 {
     /* display: none; */
   border: none;
@@ -80,8 +84,6 @@
 .btnGoToHomePage2:focus {
   background-color: #2400c4;;
 }
-
-
 
 
 .AddUploadContactsBtn {
@@ -107,10 +109,10 @@
 }
 
 
-
 .hide {
   display: none;
 }
+
 
 .TotalUploadContacts {
   margin-top: 8px;
