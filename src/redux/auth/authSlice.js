@@ -18,7 +18,7 @@ const initialState = {
     user: { name: null, email: null, avatarURL: null },
     balance: 0,
     token: null,
-    isNotNewUser: false,
+    isNotNewUser: true,
     isLoggedIn: false,
     isRegistrIn: false, //? for Kapu$ta
     isRefreshing: false,
