@@ -72,7 +72,8 @@ const transactionsSlice = createSlice({
             // state.transaction.description = payload.description
             // state.transaction.category = payload.category
             // state.transaction.sum = payload.sum
-            state.allTransactions.push(payload); // old
+            // state.allTransactions.push(payload); //! old --> //! НЕ сортированный массив всех транзакций по сумме по убыванию
+            state.allTransactions = payload.transactions //! Cортированный массив всех транзакций по сумме по убыванию
             state.isLoading = false;
             state.error = null;
         },

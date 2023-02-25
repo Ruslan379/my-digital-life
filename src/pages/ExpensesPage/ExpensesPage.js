@@ -9,7 +9,10 @@ import { getBalanceIsNotNewUser } from 'redux/auth/authOperations';
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { useAuth } from 'hooks';
 import { getAllTransactions } from 'redux/transaction/transactionOperations.js';
-import { selectLoadingTransactions, selectAllTransactions } from 'redux/transaction/transactionSelectors.js';
+import {
+  selectLoadingTransactions,
+  selectAllTransactions
+} from 'redux/transaction/transactionSelectors.js';
 
 import { BalanceForm } from 'components/BalanceForm/BalanceForm.js';
 import { TransactionForm } from 'components/TransactionForm/TransactionForm.js';
@@ -52,7 +55,8 @@ export default function ExpensesPage() {
       <h2>Expenses transactions</h2>
       <TransactionForm
         balance={balance}
-        transactionsType={transactionsType} />
+        transactionsType={transactionsType}
+      />
 
 
       {isLoading && <Loader />}

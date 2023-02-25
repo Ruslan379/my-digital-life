@@ -39,7 +39,9 @@ export const addTransaction = createAsyncThunk(
             const { data } = await axios.post('/transactions', credentials);
             console.log("transactions/addTransaction ==> data:", data); //!
             console.log("transactions/addTransaction ==> data.transaction:", data.transaction);  //!
-            return data.transaction;
+            console.log("transactions/transactions ==> data.transaction:", data.transactions);  //!
+            // return data.transaction;
+            return data;
         } catch (error) {
             console.log(error); //!
             toast.error(`Ошибка запроса: ${error.message === "Request failed with status code 400" ? "Ошибка при создании контакта" : error.message}`, { position: "top-center", autoClose: 2000 });

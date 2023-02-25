@@ -1,14 +1,29 @@
 // import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { TransactionListItem } from '../TransactionListItem/TransactionListItem.js';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 
+// import { getAllTransactions } from 'redux/transaction/transactionOperations.js';
+import { TransactionListItem } from '../TransactionListItem/TransactionListItem.js';
+// import { selectAllTransactions } from 'redux/transaction/transactionSelectors.js';
 
 import css from './TransactionList.module.css';
 
 
 
+
 export const TransactionList = ({ transactions, transactionsType }) => {
+    // export const TransactionList = ({ transactionsType }) => {
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getAllTransactions());
+    // }, [dispatch]);
+
+    // const transactions = useSelector(selectAllTransactions);
+    console.log("TransactionList ==> transactions:", transactions); //!
+
     const transactionsExpenses = transactions.filter(transaction => transaction.transactionsType === "expenses");
     console.log("TransactionList ==> transactionsExpenses:", transactionsExpenses); //!
 

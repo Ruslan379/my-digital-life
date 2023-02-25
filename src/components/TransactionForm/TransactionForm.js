@@ -12,7 +12,10 @@ import moment from 'moment';
 
 // import { updateBalance } from 'redux/auth/authOperations.js'; //!!!!!
 import { getBalanceIsNotNewUser } from 'redux/auth/authOperations';
-import { addTransaction } from 'redux/transaction/transactionOperations.js'; //!!!!!
+import {
+    addTransaction,
+    // getAllTransactions
+} from 'redux/transaction/transactionOperations.js'; //!!!!!
 
 import { selectIsRefreshing, selectBalance } from 'redux/auth/authSelectors';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors';
@@ -98,6 +101,7 @@ export const TransactionForm = ({ balance, transactionsType }) => {
         }
         form.reset();
         dispatch(getBalanceIsNotNewUser());
+        // dispatch(getAllTransactions()); //! добавил для сортировки
         return;
     };
 
