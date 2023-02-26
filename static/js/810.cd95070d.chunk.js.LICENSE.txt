@@ -6,6 +6,8 @@
 
 //! currentFullDate
 
+//! Для reverse
+
 //! ИЗМЕНИТЬ баланс пользователя
 
 //! ИЗМЕНИТЬ статус  пользователя --> user.isNotNewUser: false (если balanceNew === 0)
