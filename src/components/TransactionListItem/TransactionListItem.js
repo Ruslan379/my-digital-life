@@ -18,8 +18,14 @@ import css from './TransactionListItem.module.css';
 
 
 
-export const TransactionListItem = ({ id, date, transactionsType, description, category, sum }) => {
+export const TransactionListItem = ({ id, date: currentFullDate, transactionsType, description, category, sum }) => {
     // const dispatch = useDispatch(); //!!!!!
+
+    // const [date, time] = currentFullDate.split(" ");
+    const [date] = currentFullDate.split(" ");
+    console.log("TransactionListItem ==> date:", date);
+    // console.log("TransactionListItem ==> time:", time);
+
 
     //! Модальное окно
     const [showModal, setShowModal] = useState(false);
@@ -29,7 +35,7 @@ export const TransactionListItem = ({ id, date, transactionsType, description, c
 
 
     const isLoading = useSelector(selectLoadingTransactions);
-    console.log("ContactListItem==>isLoading:", isLoading); //!
+    console.log("TransactionListItem ==> isLoading:", isLoading); //!
 
 
     // const handleDeleteQuestion = () => {

@@ -49,17 +49,31 @@ export const TransactionForm = ({ balance, transactionsType }) => {
     //! _________________________ console balance & isRefreshing _________________________
 
 
+    //! currentFullDate
+    // const currentFullDate = moment().format("DD-MM-YYYY");
+    const currentFullDate = moment().format("DD.MM.YYYY hh:mm:ss");
+    console.log("currentFullDate:", currentFullDate);
+
     //! currentDate
-    // const currentDate = moment().format("DD-MM-YYYY_hh:mm:ss");
-    const currentDate = moment().format("DD-MM-YYYY");
+    const [currentDate, currentTime] = currentFullDate.split(" ");
     console.log("currentDate:", currentDate);
+    console.log("currentTime:", currentTime);
+
+
 
     //! Submit FORM
     const handleSubmit = e => {
         e.preventDefault();
 
         const form = e.currentTarget;
-        const date = form.elements.date.value;
+        //! Проверка даты на изменение
+        // const date = form.elements.date.value;
+        let date = currentFullDate
+        if (form.elements.date.value !== currentDate) {
+            date = form.elements.date.value
+            // console.log("TransactionForm ==> date:", date);
+        };
+
         const description = form.elements.description.value;
         const category = form.elements.category.value;
         const sum = form.elements.sum.value;
@@ -83,6 +97,7 @@ export const TransactionForm = ({ balance, transactionsType }) => {
 
         const transaction = {
             transactionsType,
+            // date: currentFullDate,
             date,
             description,
             category,
@@ -104,10 +119,6 @@ export const TransactionForm = ({ balance, transactionsType }) => {
         // dispatch(getAllTransactions()); //! добавил для сортировки
         return;
     };
-
-    // const handleBlur = () => {
-    //     console.log("handleBlur");
-    // }
 
 
 
