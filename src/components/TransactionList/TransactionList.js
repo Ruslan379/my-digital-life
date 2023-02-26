@@ -1,6 +1,6 @@
 // import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ import css from './TransactionList.module.css';
 export const TransactionList = ({ transactions, transactionsType }) => {
     // export const TransactionList = ({ transactionsType }) => {
     //! Для reverse
+    const [reverseSort, setReverseSort] = useState(false);
     // const [selectionByTransactionType, setSelectionByTransactionType] = useState([]);
     // const [selectionByTransactionTypeReverse, setSelectionByTransactionTypeReverse] = useState([]);
 
@@ -40,23 +41,30 @@ export const TransactionList = ({ transactions, transactionsType }) => {
     if (transactionsType === "expenses") {
         selectionByTransactionType = transactionsExpenses
         // setSelectionByTransactionType(transactionsExpenses) //! Зацикливается
-
+        //! Зацикливается
+        // setSelectionByTransactionType(transactions.filter(transaction => transaction.transactionsType === "expenses"))
     }
+
     if (transactionsType === "income") {
         selectionByTransactionType = transactionsIncome
         // setSelectionByTransactionType(transactionsIncome) //! Зацикливается
+        //! Зацикливается
+        // setSelectionByTransactionType(transactions.filter(transaction => transaction.transactionsType === "income"))
     }
 
     // setSelectionByTransactionTypeReverse(selectionByTransactionType); //! Зацикливается
 
     const reverse = () => {
+        setReverseSort(!reverseSort);
+        // setReverseSort(selectionByTransactionType.reverse());
+        console.log("TransactionList-reverse ==> reverseSort:", reverseSort); //!
+
         // selectionByTransactionType.reverse(); //! сортирует массив в обратном порядке
-        selectionByTransactionType = selectionByTransactionType.reverse();
-        console.log("TransactionList-reverse ==> selectionByTransactionType:", selectionByTransactionType); //!
+        // selectionByTransactionType = selectionByTransactionType.reverse();
+        // console.log("TransactionList-reverse ==> selectionByTransactionType:", selectionByTransactionType); //!
 
         // setSelectionByTransactionTypeReverse(selectionByTransactionType)
         // setSelectionByTransactionTypeReverse(prevState => [...prevState, selectionByTransactionType])
-
 
         // const array = selectionByTransactionType.reverse()
         // console.log("TransactionList-reverse ==> array:", array); //!
@@ -64,13 +72,20 @@ export const TransactionList = ({ transactions, transactionsType }) => {
         // console.log("TransactionList-reverse ==> selectionByTransactionTypeReverse:", selectionByTransactionTypeReverse); //!
     }
 
+    if (reverseSort) {
+        selectionByTransactionType = selectionByTransactionType.reverse()
+    }
 
 
     return (
         <>
             <div className={css.TransactionListHeader}>
-                <p className={css.TransactionListText}>
-                    Date
+                <p
+                    className={css.TransactionListTextDate}
+                    onClick={reverse}
+                >
+                    {reverseSort ? [<span>&#8659;&#160;</span>, "Date"] : [<span>&#8657;&#160;</span>, "Date"]}
+                    {/* &#8693; Date */}
                 </p>
                 <p className={css.TransactionListText}>
                     Description
@@ -82,7 +97,12 @@ export const TransactionList = ({ transactions, transactionsType }) => {
                     Sum
                 </p>
                 <p className={css.TransactionListText}>
-                    <button onClick={reverse}>Reverse</button>
+                    {/* <button
+                        className={css.btnReverse}
+                        onClick={reverse}
+                    >
+                        &lsaquo; Reverse Date &rsaquo;
+                    </button> */}
                     {/* <button onClick={() => setSelectionByTransactionTypeReverse(selectionByTransactionType.reverse())}>Reverse</button> */}
                     {/* <button onClick={() => setSelectionByTransactionType(selectionByTransactionType.reverse())}>Reverse</button> */}
                 </p>
