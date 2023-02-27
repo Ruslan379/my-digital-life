@@ -72,8 +72,14 @@ const transactionsSlice = createSlice({
             // state.transaction.description = payload.description
             // state.transaction.category = payload.category
             // state.transaction.sum = payload.sum
-            // state.allTransactions.push(payload); //! old --> НЕ сортированный массив всех транзакций по date по убыванию
-            state.allTransactions = payload.transactions //! Cортированный массив всех транзакций по date по убыванию
+
+            //! var. 1-1 --> НЕ сортированный массив всех транзакций по date по убыванию --> добаввляет в КОНЕЦ списка!!!
+            // state.allTransactions.push(payload);  //! var. 1-1
+            //* var. 1-2 --> ПСЕВДО сортированный массив всех транзакций по date по убыванию --> добаввляет в НАЧАЛО списка!!!
+            // state.allTransactions = [payload.transaction, ...state.allTransactions]; //* var. 1-2
+            //? var. 2 --> Cортированный массив всех транзакций по date по убыванию 
+            state.allTransactions = payload.transactions //? var. 2
+
             state.isLoading = false;
             state.error = null;
         },
