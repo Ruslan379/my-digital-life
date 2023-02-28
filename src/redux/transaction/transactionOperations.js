@@ -20,6 +20,8 @@ export const getAllTransactions = createAsyncThunk(
             const { data: { transactions } } = await axios.get('/transactions');
             // const { transactions } = data; //??  //???
             console.log("contacts/getAllTransactions == >data.transactions:", transactions);
+            const transactionsReverse = await transactions.reverse();
+            console.log("contacts/getAllTransactions == >transactionsReverse:", transactionsReverse);
             return transactions;
         } catch (error) {
             console.log(error); //!
