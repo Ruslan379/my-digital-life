@@ -59,6 +59,7 @@ export default function IncomePage() {
         <>
           <h2>Income transactions list</h2>
           <TransactionList
+            key={transactionsType}
             transactions={transactions}
             transactionsType={transactionsType}
           // visibleTransaction={visibleTransaction}
