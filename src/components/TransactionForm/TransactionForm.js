@@ -52,12 +52,30 @@ export const TransactionForm = ({ balance, transactionsType }) => {
     //! currentFullDate
     // const currentFullDate = moment().format("DD-MM-YYYY");
     const currentFullDate = moment().format("DD.MM.YYYY hh:mm:ss");
-    console.log("currentFullDate:", currentFullDate);
+    console.log("currentFullDate:", currentFullDate); //!
 
     //! currentDate
+    const currentFullDateSplit = currentFullDate.split(" ");
+    console.log("currentFullDateSplit:", currentFullDateSplit); //!
+
     const [currentDate, currentTime] = currentFullDate.split(" ");
-    console.log("currentDate:", currentDate);
-    console.log("currentTime:", currentTime);
+    console.log("currentDate:", currentDate); //!
+    console.log("currentTime:", currentTime); //!
+
+
+
+    //! Преобразование даты в число для сортировки в таблицах транзакций
+    const currentFullDateSplitDate = currentDate.split(".");
+    currentFullDateSplitDate.reverse();
+    console.log("currentFullDateSplitDate:", currentFullDateSplitDate); //!
+    const currentFullDateSplitTime = currentTime.split(":");
+    console.log("currentFullDateSplitTime:", currentFullDateSplitTime); //!
+
+    const currentFullDateSplitAll = [...currentFullDateSplitDate, ...currentFullDateSplitTime];
+    console.log("currentFullDateSplitAll:", currentFullDateSplitAll); //!
+
+    let currentFullDateJoin = Number(currentFullDateSplitAll.join(""));
+    console.log("currentFullDateJoin:", currentFullDateJoin); //!
 
 
 
@@ -71,7 +89,13 @@ export const TransactionForm = ({ balance, transactionsType }) => {
         let date = currentFullDate
         if (form.elements.date.value !== currentDate) {
             date = form.elements.date.value
-            // console.log("TransactionForm ==> date:", date);
+            console.log("TransactionForm ==> date:", date); //!
+            //! Преобразование даты в число для сортировки в таблицах транзакций
+            const dateSplit = date.split(".");
+            dateSplit.reverse();
+            console.log("TransactionForm ==> dateSplit:", dateSplit); //!
+            currentFullDateJoin = Number(dateSplit.join("") + "000000");
+            console.log("currentFullDateJoin:", currentFullDateJoin); //!
         };
 
         const description = form.elements.description.value;
@@ -99,6 +123,7 @@ export const TransactionForm = ({ balance, transactionsType }) => {
             transactionsType,
             // date: currentFullDate,
             date,
+            sortDate: currentFullDateJoin,
             description,
             category,
             sum
