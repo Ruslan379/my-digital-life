@@ -27,6 +27,10 @@ export const LoginForm = () => {
 
     return (
         <>
+            <button>
+                <a href="http://localhost:3033/api/users/google">Login Google</a>
+            </button>
+
             <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
                 <label className={css.label}>
                     Email
