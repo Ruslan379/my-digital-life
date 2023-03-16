@@ -1,8 +1,12 @@
+// import { useEffect } from 'react'; //? Нужно только в LoginForm
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { useAuth } from 'hooks';
-import { register } from 'redux/auth/authOperations';
+import {
+    register,
+    // logIn //? Нужно только в LoginForm
+} from 'redux/auth/authOperations';
 
 import css from './RegisterForm.module.css';
 
@@ -14,6 +18,20 @@ export const RegisterForm = () => {
     const dispatch = useDispatch();
     const { user, IsRegistrIn } = useAuth();
     console.log("RegisterForm --> IsRegistrIn:", IsRegistrIn);
+
+    //? Нужно только в LoginForm
+    //! Параметры email и password из URL 
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const email = urlParams.get('email');
+    // const password = urlParams.get('password');
+
+    //? Нужно только в LoginForm
+    //! Если есть параметры email и password из URL
+    // useEffect(() => {
+    //     if (email) {
+    //         dispatch(logIn({ email, password }));
+    //     }
+    // }, [dispatch, email, password]);
 
 
     const handleSubmit = e => {

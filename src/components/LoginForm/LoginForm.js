@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -12,6 +13,19 @@ import css from './LoginForm.module.css';
 export const LoginForm = () => {
     const dispatch = useDispatch();
     const { user, IsRegistrIn } = useAuth();
+
+    //! Параметры email и password из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    const password = urlParams.get('password');
+
+    //! Если есть параметры email и password из URL
+    useEffect(() => {
+        if (email) {
+            dispatch(logIn({ email, password }));
+        }
+    }, [dispatch, email, password]);
+
 
     const handleSubmit = e => {
         e.preventDefault();

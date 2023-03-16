@@ -50,7 +50,6 @@ export const ModalLogOutWindow = ({ toggleModal }) => {
 }
 
 ModalLogOutWindow.propTypes = {
-    id: PropTypes.string.isRequired,
     toggleModal: PropTypes.func.isRequired,
 };
 
