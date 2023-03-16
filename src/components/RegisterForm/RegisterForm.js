@@ -50,7 +50,7 @@ export const RegisterForm = () => {
     return (
         <>
             <button>
-                <a href="http://localhost:3033/api/users/google">Register Google</a>
+                <a href="http://localhost:3033/api/users/google">Google</a>
             </button>
 
             <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
